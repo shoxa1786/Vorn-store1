@@ -1,135 +1,266 @@
+
 <!DOCTYPE html>
 <html lang="uz">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-  <title>Donat Game Shop</title>
-  <!-- Telegram Web App SDK -->
-  <script src="https://telegram.org/js/telegram-web-app.js"></script>
-  <!-- FontAwesome piktogrammalari -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<meta name="viewport"
+ content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>PIXELHUB</title>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<style>
+:root {
+  --bg: #080d1e;
+  --card: #111a35;
+  --blue: #167bff;
+  --cyan: #32e5ff;
+  --purple: #7c3cff;
+  --muted: #9aa8c9;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: #fff;
+  font-family: system-ui, sans-serif;
+  padding: 18px 15px 100px;
+}
+button { font: inherit; cursor: pointer; }
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 8px 0 26px;
+}
+.brand { display:flex; align-items:center; gap:10px; }
+.logo {
+  width:45px;height:45px;border-radius:15px;
+  display:grid;place-items:center;
+  background:linear-gradient(135deg,#14d8ff,#643bff);
+  font-size:25px;
+  box-shadow:0 0 22px #265cff66;
+}
+.brand h1 {font-size:22px;margin:0;letter-spacing:1px;}
+.coins {
+  background:#18213b;border:1px solid #29365c;
+  border-radius:30px;padding:10px 15px;
+}
+.balance {
+  padding:23px 20px 20px;
+  border-radius:27px;
+  background:linear-gradient(130deg,#087fca,#193de0 58%,#6928dc);
+  border:1px solid #58dfff88;
+  box-shadow:0 10px 35px #174aff20;
+}
+.muted {color:#c2d2ff;font-size:13px;}
+.amount {font-size:43px;font-weight:750;margin:3px 0 20px;}
+.actions {display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+.action {
+  color:white;background:#ffffff13;
+  border:1px solid #ffffff40;border-radius:15px;
+  padding:13px 3px;font-size:12px;
+}
+.action span {display:block;font-size:21px;margin-bottom:5px;}
+.section-title {
+  display:flex;justify-content:space-between;
+  align-items:center;margin:29px 0 15px;
+}
+.section-title h2 {font-size:18px;margin:0;}
+.link {color:var(--cyan);background:none;border:0;}
+.games {
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:11px;
+}
+.game {
+  min-width:0;padding:0;background:var(--card);
+  color:white;border:1px solid #344568;border-radius:17px;
+  overflow:hidden;text-align:left;
+}
+.cover {
+  height:135px;display:flex;align-items:center;
+  justify-content:center;font-size:48px;
+  background:linear-gradient(155deg,#164f87,#071328);
+}
+.game:nth-child(2) .cover {
+  background:linear-gradient(155deg,#872c35,#24102b);
+}
+.game:nth-child(3) .cover {
+  background:linear-gradient(155deg,#2364c9,#11122d);
+}
+.game-name {
+  display:block;padding:9px 5px 11px;
+  text-align:center;font-size:11px;font-weight:650;
+}
+.services {
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:10px;
+}
+.service {
+  min-width:0;border:1px solid #394a85;
+  border-radius:19px;padding:13px 5px;
+  text-align:center;
+  background:linear-gradient(165deg,#142b58,#11132f);
+}
+.service .art {font-size:43px;margin:8px 0 12px;}
+.service h3 {font-size:13px;margin:0 0 7px;}
+.service p {font-size:11px;line-height:1.5;color:var(--muted);margin:0 0 12px;}
+.go {
+  background:linear-gradient(100deg,#087fe8,#633bff);
+  color:white;border:0;border-radius:20px;padding:6px 18px;
+}
+.nav {
+  position:fixed;z-index:10;bottom:10px;left:12px;right:12px;
+  padding:9px 5px;
+  border-radius:25px;
+  background:#131b32f5;
+  border:1px solid #34405e;
+  display:grid;grid-template-columns:repeat(4,1fr);
+  backdrop-filter:blur(18px);
+}
+.nav button {
+  background:transparent;color:var(--muted);
+  border:0;border-radius:17px;padding:9px 0;
+  font-size:11px;
+}
+.nav button span {display:block;font-size:22px;margin-bottom:4px;}
+.nav button.active {
+  color:var(--cyan);
+  background:linear-gradient(135deg,#174a9c,#222c79);
+  box-shadow:inset 0 0 0 1px #348cff;
+}
+.toast {
+  position:fixed;bottom:95px;left:50%;
+  transform:translateX(-50%);
+  background:#202d4d;padding:12px 18px;
+  border-radius:14px;font-size:13px;
+  display:none;white-space:nowrap;
+}
+@media(max-width:360px) {
+  body{padding-left:10px;padding-right:10px;}
+  .cover{height:110px;}
+  .brand h1{font-size:19px;}
+}
+</style>
 </head>
 <body>
 
-  <!-- Loading Screen (Splash Screen) -->
-  <div id="loading-screen" class="loading-screen">
-    <div class="loader-content">
-      <div class="mascot-icon">
-        <i class="fa-solid fa-gem float-gem"></i>
-        <i class="fa-solid fa-gamepad main-mascot"></i>
-      </div>
-      <h2 class="brand-title">DONAT SHOP</h2>
-      <div class="progress-bar">
-        <div class="progress-fill"></div>
-      </div>
-    </div>
+<header class="header">
+  <div class="brand">
+    <div class="logo">⚡</div>
+    <h1>PIXELHUB</h1>
   </div>
+  <div class="coins">🪙 <b>0</b></div>
+</header>
 
-  <!-- Main App Container -->
-  <div id="app" class="app-container hidden">
-    
-    <!-- Top Bar -->
-    <header class="top-header">
-      <div class="user-profile">
-        <div class="avatar" id="user-avatar"><i class="fa-solid fa-user"></i></div>
-        <span class="user-name" id="user-name">Foydalanuvchi</span>
-      </div>
-      <div class="theme-toggle">
-        <i class="fa-solid fa-moon"></i>
-      </div>
-    </header>
-
-    <!-- Balance Card Section -->
-    <section class="balance-card">
-      <div class="balance-title">Balans</div>
-      <div class="balance-amount"><span id="balance">0</span> <small>so'm</small></div>
-      
-      <div class="quick-actions">
-        <button class="action-btn" onclick="topUpBalance()">
-          <i class="fa-solid fa-wallet"></i>
-          <span>Hisobni to'ldirish</span>
-        </button>
-        <button class="action-btn" onclick="openBonusCode()">
-          <i class="fa-solid fa-gift"></i>
-          <span>Bonus kodlar</span>
-        </button>
-        <button class="action-btn" onclick="openSupport()">
-          <i class="fa-solid fa-headset"></i>
-          <span>Qo'llab-quvvatlash</span>
-        </button>
-      </div>
-    </section>
-
-    <!-- Games Grid Section -->
-    <main class="games-section">
-      <div class="section-title">O'yinlar va Xizmatlar</div>
-      
-      <div class="games-grid">
-        <!-- Game Item 1 -->
-        <div class="game-card" onclick="selectGame('PUBG Mobile')">
-          <div class="badge badge-global">Global</div>
-          <div class="star-icon"><i class="fa-solid fa-star"></i></div>
-          <div class="game-image-placeholder pubg-bg">
-            <i class="fa-solid fa-crosshair"></i>
-          </div>
-          <div class="game-title">PUBG MOBILE</div>
-        </div>
-
-        <!-- Game Item 2 -->
-        <div class="game-card" onclick="selectGame('Free Fire')">
-          <div class="badge badge-sng">SNG</div>
-          <div class="star-icon"><i class="fa-solid fa-star"></i></div>
-          <div class="game-image-placeholder ff-bg">
-            <i class="fa-solid fa-fire"></i>
-          </div>
-          <div class="game-title">FREE FIRE</div>
-        </div>
-
-        <!-- Game Item 3 -->
-        <div class="game-card" onclick="selectGame('Telegram Premium')">
-          <div class="badge badge-auto">AVTO</div>
-          <div class="star-icon"><i class="fa-solid fa-star"></i></div>
-          <div class="game-image-placeholder tg-bg">
-            <i class="fa-solid fa-paper-plane"></i>
-          </div>
-          <div class="game-title">TG PREMIUM</div>
-        </div>
-
-        <!-- Game Item 4 -->
-        <div class="game-card" onclick="selectGame('Telegram Stars')">
-          <div class="badge badge-auto">AVTO</div>
-          <div class="star-icon"><i class="fa-solid fa-star"></i></div>
-          <div class="game-image-placeholder star-bg">
-            <i class="fa-solid fa-star-half-stroke"></i>
-          </div>
-          <div class="game-title">TG STARS</div>
-        </div>
-      </div>
-    </main>
-
-    <!-- Bottom Navigation Bar -->
-    <nav class="bottom-nav">
-      <button class="nav-item active" onclick="switchTab('home')">
-        <i class="fa-solid fa-house"></i>
-        <span>Bosh sahifa</span>
-      </button>
-      <button class="nav-item" onclick="switchTab('history')">
-        <i class="fa-solid fa-clock-rotate-left"></i>
-        <span>Tarix</span>
-      </button>
-      <button class="nav-item" onclick="switchTab('settings')">
-        <i class="fa-solid fa-user-gear"></i>
-        <span>Sozlamalar</span>
-      </button>
-      <button class="nav-item" onclick="switchTab('rent')">
-        <i class="fa-solid fa-key"></i>
-        <span>Ijaraga</span>
-      </button>
-    </nav>
-
+<section class="balance">
+  <div class="muted">BALANSINGIZ</div>
+  <div class="amount">0 <span style="font-size:20px">so'm</span></div>
+  <div class="actions">
+    <button class="action" onclick="notify('Balansni to‘ldirish')">
+      <span>💳</span>Hisobni to‘ldirish
+    </button>
+    <button class="action" onclick="notify('Promo kod kiriting')">
+      <span>🎟️</span>Promo kod
+    </button>
+    <button class="action" onclick="notify('Qo‘llab-quvvatlash')">
+      <span>💬</span>Yordam
+    </button>
   </div>
+</section>
 
-  <script src="script.js"></script>
+<div class="section-title">
+  <h2>🎮 Mashhur o‘yinlar</h2>
+  <button class="link" onclick="notify('Barcha o‘yinlar')">
+    Barchasi ›
+  </button>
+</div>
+
+<section class="games">
+  <button class="game" onclick="selectGame('PUBG MOBILE')">
+    <div class="cover">🎯</div>
+    <span class="game-name">PUBG MOBILE</span>
+  </button>
+  <button class="game" onclick="selectGame('FREE FIRE')">
+    <div class="cover">🔥</div>
+    <span class="game-name">FREE FIRE</span>
+  </button>
+  <button class="game" onclick="selectGame('MOBILE LEGENDS')">
+    <div class="cover">⚔️</div>
+    <span class="game-name">MOBILE LEGENDS</span>
+  </button>
+</section>
+
+<div class="section-title">
+  <h2>✨ Maxsus takliflar</h2>
+</div>
+
+<section class="services">
+  <article class="service">
+    <div class="art">⭐</div>
+    <h3>Telegram Stars</h3>
+    <p>Stars xarid qilish</p>
+    <button class="go" onclick="order('Telegram Stars')">→</button>
+  </article>
+  <article class="service">
+    <div class="art">👑</div>
+    <h3>Premium</h3>
+    <p>Premium obuna</p>
+    <button class="go" onclick="order('Telegram Premium')">→</button>
+  </article>
+  <article class="service">
+    <div class="art">🎁</div>
+    <h3>Gift Box</h3>
+    <p>Sovg‘alar</p>
+    <button class="go" onclick="order('Gift Box')">→</button>
+  </article>
+</section>
+
+<nav class="nav">
+  <button class="active" onclick="tab(this,'Bosh sahifa')">
+    <span>⌂</span>Bosh sahifa
+  </button>
+  <button onclick="tab(this,'Buyurtmalar')">
+    <span>▤</span>Buyurtmalar
+  </button>
+  <button onclick="tab(this,'Hamyon')">
+    <span>▣</span>Hamyon
+  </button>
+  <button onclick="tab(this,'Profil')">
+    <span>♙</span>Profil
+  </button>
+</nav>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const tg = window.Telegram?.WebApp;
+tg?.ready();
+tg?.expand();
+
+function notify(message) {
+  const el = document.getElementById('toast');
+  el.textContent = message;
+  el.style.display = 'block';
+  clearTimeout(window.toastTimer);
+  window.toastTimer = setTimeout(() => {
+    el.style.display = 'none';
+  }, 2200);
+}
+
+function selectGame(name) {
+  notify(name + ' tanlandi');
+}
+
+function order(name) {
+  notify(name + ' bo‘limi tanlandi');
+}
+
+function tab(button, name) {
+  document.querySelectorAll('.nav button').forEach(el =>
+    el.classList.remove('active')
+  );
+  button.classList.add('active');
+  if (name !== 'Bosh sahifa') notify(name + ' bo‘limi');
+}
+</script>
 </body>
 </html>
