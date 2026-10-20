@@ -1,116 +1,130 @@
-<!doctype html>
+
+<!DOCTYPE html>
 <html lang="uz">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#080d1c">
-<meta name="description" content="VORNGAMESTORE — o‘yinlar va Telegram xizmatlari uchun zamonaviy do‘kon.">
-<title>VORNGAMESTORE | Game Top-Up</title>
-<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080d1b">
+<title>VORN STORE | Game Top-Up</title>
+
 <style>
-:root{color-scheme:dark;--bg:#080d1c;--panel:#101a33;--panel2:#131f3d;--line:#28395d;--muted:#9baaca;--white:#f6f8ff;--cyan:#39e5ff;--blue:#1684ff;--purple:#793dff;--radius:22px}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 50% -20%,#1b2c67 0,transparent 48%),var(--bg);color:var(--white);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;padding:18px 15px calc(105px + env(safe-area-inset-bottom));overflow-x:hidden}button,input{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}.app{max-width:1040px;margin:0 auto}
-.topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:4px 0 24px}.brand{display:flex;align-items:center;gap:10px;min-width:0}.brand-icon{width:44px;height:44px;flex-shrink:0;border-radius:15px;display:grid;place-items:center;font-size:24px;font-weight:1000;background:linear-gradient(140deg,#32eaff,#1465ff 58%,#913bff);box-shadow:0 0 26px #237dff55}.brand-name{font-size:clamp(15px,4vw,24px);font-weight:950;letter-spacing:.2px;white-space:nowrap}.brand-name span{color:var(--cyan)}.user-tools{display:flex;align-items:center;gap:9px}.avatar{width:41px;height:41px;border:2px solid #3acfff;border-radius:50%;display:grid;place-items:center;background:linear-gradient(145deg,#1b3e73,#5a2da5);font-size:20px}.coin-pill{padding:10px 14px;border:1px solid #2e3d60;border-radius:28px;background:#131d35;white-space:nowrap}
-.balance{position:relative;isolation:isolate;overflow:hidden;padding:23px 21px 19px;border:1px solid #4acfff9c;border-radius:28px;background:linear-gradient(120deg,#0877c8 0%,#153ee0 53%,#6725d4 100%);box-shadow:0 15px 42px #133caa25}.balance:before{content:"";position:absolute;z-index:-1;right:-45px;top:-95px;width:230px;height:230px;border-radius:50%;background:radial-gradient(circle,#a4baff2c,transparent 68%)}.balance-top{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}.eyebrow{font-size:13px;letter-spacing:1px;font-weight:700;color:#cde4ff}.amount{font-size:clamp(42px,9vw,61px);font-weight:850;line-height:1.18;letter-spacing:-2px;margin:5px 0 19px}.amount small{font-size:19px;letter-spacing:0;color:#64efff}.wallet-art{font-size:58px;filter:drop-shadow(0 7px 12px #00143f66);margin-right:10px}.quick-actions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;border-top:1px solid #ffffff32;padding-top:17px}.quick-action{min-width:0;min-height:78px;border:1px solid #ffffff42;border-radius:16px;background:#ffffff12;color:#fff;padding:11px 4px;transition:transform .18s,background .18s}.quick-action:hover{transform:translateY(-2px);background:#ffffff22}.quick-action .icon{display:block;font-size:23px;margin-bottom:5px}.quick-action span:last-child{font-size:clamp(10px,2.7vw,13px);font-weight:650}
-.section-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:29px 0 14px}.section-head h2{margin:0;font-size:19px;letter-spacing:-.3px}.view-all{background:none;border:0;color:var(--cyan);padding:7px 0;white-space:nowrap}.category-row{display:flex;gap:8px;overflow:auto;padding:1px 0 4px;margin-bottom:12px;scrollbar-width:none}.category-row::-webkit-scrollbar{display:none}.chip{flex:0 0 auto;border:1px solid #29395b;background:#111b33;color:#aebbd7;border-radius:30px;padding:8px 13px;font-size:12px}.chip.active{background:#143d80;border-color:#328eff;color:#fff}
-.games{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.game-card{min-width:0;padding:0;overflow:hidden;text-align:left;color:#fff;background:#0d162b;border:1px solid #2b4267;border-radius:19px;transition:transform .18s,border-color .18s,box-shadow .18s}.game-card:hover{transform:translateY(-3px);border-color:#42caff;box-shadow:0 9px 24px #1269ff19}.game-art{height:clamp(125px,26vw,230px);position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;padding:12px}.game-art:before{content:"";position:absolute;inset:0;background:linear-gradient(145deg,#ffffff0b,transparent 45%,#0004)}.art-pubg{background:radial-gradient(ellipse at 50% 20%,#1b6a9e,#081528 72%)}.art-freefire{background:radial-gradient(ellipse at 50% 20%,#a83b29,#1d1026 72%)}.art-ml{background:radial-gradient(ellipse at 50% 20%,#286fc7,#0b1028 72%)}.art-standoff{background:radial-gradient(ellipse at 50% 20%,#9c252d,#170d20 72%)}.art-logo{position:relative;z-index:1;max-width:92%;max-height:75%;object-fit:contain;filter:drop-shadow(0 7px 13px #0009)}.logo-fallback{position:relative;z-index:1;text-align:center;font-weight:1000;font-style:italic;font-size:clamp(17px,4vw,29px);line-height:1.05;letter-spacing:-.8px;text-shadow:0 4px 15px #000a}.logo-fallback small{display:block;font-size:.45em;letter-spacing:2px;margin-top:6px}.corner-label{position:absolute;z-index:2;top:9px;left:9px;border:1px solid #ffffff24;background:#146fcecf;border-radius:8px;padding:5px 7px;font-size:9px;font-weight:850;letter-spacing:.5px}.game-info{padding:11px 8px 13px}.game-title{font-size:clamp(10px,2.4vw,13px);font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.game-subtitle{font-size:11px;color:var(--muted);margin-top:5px}.services{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.service-card{min-width:0;text-align:center;padding:13px 7px 15px;border:1px solid #2a56a4;border-radius:21px;background:linear-gradient(160deg,#112a54,#0b132a 80%);overflow:hidden}.service-card:nth-child(2){border-color:#6541c8;background:linear-gradient(160deg,#2a185c,#10102b 80%)}.service-card:nth-child(3){border-color:#803ab0;background:linear-gradient(160deg,#39164d,#100e29 80%)}.service-art{height:clamp(80px,17vw,137px);display:grid;place-items:center;font-size:clamp(44px,10vw,76px);filter:drop-shadow(0 0 16px #458cff45)}.service-card h3{font-size:clamp(11px,2.8vw,15px);margin:8px 0 7px}.service-card p{font-size:11px;line-height:1.45;color:#aebcdd;min-height:32px;margin:0 0 12px}.arrow-btn{width:55px;height:38px;border:1px solid #719aff50;border-radius:25px;background:linear-gradient(100deg,#087be7,#6138f5);color:white;font-size:22px}.service-card:nth-child(3) .arrow-btn{background:linear-gradient(100deg,#902bb8,#5726a7)}
-.promo-banner{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:24px;padding:18px;border:1px solid #344a7b;border-radius:20px;background:linear-gradient(110deg,#111d3d,#17143b)}.promo-banner strong{display:block;font-size:15px}.promo-banner p{margin:5px 0 0;color:var(--muted);font-size:12px}.promo-banner .promo-icon{font-size:32px}.bottom-nav{position:fixed;z-index:10;left:12px;right:12px;bottom:calc(9px + env(safe-area-inset-bottom));width:min(1016px,calc(100% - 24px));margin:auto;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:3px;padding:8px 5px;border:1px solid #2c3b5b;border-radius:26px;background:#111a31f2;box-shadow:0 12px 35px #0008;backdrop-filter:blur(18px)}.bottom-nav button{min-width:0;border:0;border-radius:18px;padding:8px 2px;background:transparent;color:#9ba9c8;font-size:11px}.nav-icon{display:block;font-size:22px;margin-bottom:4px}.bottom-nav button.active{color:#49eaff;background:linear-gradient(145deg,#1749a7,#20286f);box-shadow:inset 0 0 0 1px #398fff}.toast{position:fixed;z-index:40;left:50%;bottom:110px;transform:translateX(-50%);display:none;max-width:90%;padding:12px 16px;border:1px solid #3d5888;border-radius:14px;background:#1a2949;color:white;font-size:13px;text-align:center;box-shadow:0 10px 25px #0008}.modal-backdrop{position:fixed;z-index:30;inset:0;background:#030614c9;display:none;align-items:flex-end;justify-content:center;padding:14px}.modal-backdrop.show{display:flex}.modal{width:min(500px,100%);padding:21px;border:1px solid #344b7c;border-radius:24px;background:#121d39;box-shadow:0 20px 60px #0009}.modal-head{display:flex;justify-content:space-between;align-items:center;gap:10px}.modal-head h3{font-size:19px;margin:0}.close{border:0;border-radius:10px;background:#263656;color:white;padding:7px 11px}.modal-desc{font-size:13px;color:var(--muted);line-height:1.5}.field{display:block;width:100%;margin:9px 0 13px;padding:13px;border:1px solid #344971;border-radius:13px;background:#091126;color:white}.primary{width:100%;border:0;border-radius:14px;padding:13px;background:linear-gradient(100deg,#087bff,#753cff);color:white;font-weight:800}.product-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin:15px 0}.product-option{border:1px solid #344a74;background:#0d1730;border-radius:13px;padding:13px;color:white;text-align:left}.product-option strong{display:block;margin-bottom:5px}.product-option small{color:#a8b7d6}.empty{padding:24px 12px;text-align:center;border:1px dashed #34466b;border-radius:18px;color:var(--muted);font-size:13px}.footer{text-align:center;color:#637398;font-size:11px;margin:24px 0 0}
-@media(min-width:700px){body{padding-top:28px}.balance{padding:30px}.quick-action{min-height:85px}.games,.services{gap:16px}.game-art{height:220px}.service-card{padding:19px}.section-head h2{font-size:22px}}
-@media(max-width:370px){body{padding-left:10px;padding-right:10px}.brand-icon{width:37px;height:37px}.avatar{display:none}.balance{padding:18px 13px}.quick-actions{gap:6px}.game-art{height:105px}.games,.services{gap:7px}.service-card{padding-left:4px;padding-right:4px}.service-art{height:75px}.bottom-nav{left:8px;right:8px;width:calc(100% - 16px)}}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#080d1b;color:#fff;font-family:Arial,sans-serif;min-height:100vh}
+header{padding:22px 6%;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #1b2942;gap:10px}
+.logo{font-size:25px;font-weight:900;letter-spacing:2px}
+.logo span{color:#20a4ff}
+.status{color:#72e7ff;font-size:11px;border:1px solid #164e75;padding:8px 12px;border-radius:20px}
+.hero{padding:55px 6% 35px;background:radial-gradient(ellipse at 50% 0%,#123c70 0%,#080d1b 65%);text-align:center}
+.tag{color:#37b5ff;font-size:12px;font-weight:bold;letter-spacing:3px}
+h1{font-size:clamp(36px,8vw,65px);margin:16px 0;line-height:1.08}
+h1 span{color:#24a8ff;text-shadow:0 0 30px #087bff70}
+.hero p{color:#aab8cf;line-height:1.7;font-size:14px}
+.section{padding:25px 6% 55px;max-width:1200px;margin:auto}
+.section h2{font-size:23px;margin-bottom:8px}
+.sub{color:#8c9ab1;font-size:13px;margin-bottom:25px}
+.games{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.game{background:linear-gradient(145deg,#15243c,#0d1425);border:1px solid #233653;border-radius:17px;overflow:hidden;transition:.2s}
+.game:hover{border-color:#24a8ff;transform:translateY(-3px)}
+.game-image{width:100%;height:145px;object-fit:cover;display:block;background:#102747}
+.game-info{padding:14px 12px 16px;text-align:center}
+.game h3{font-size:15px;margin-bottom:8px}
+.game p{font-size:12px;color:#96a8c2;margin-bottom:16px}
+button{width:100%;background:linear-gradient(90deg,#087bff,#22b8ff);border:none;border-radius:9px;color:white;padding:12px 8px;font-size:13px;font-weight:bold;cursor:pointer;touch-action:manipulation}
+button:active{opacity:.8}
+#message{display:none;margin-top:20px;border:1px solid #087bff;border-radius:12px;padding:16px;color:#fff;font-size:14px;line-height:1.6;background:#102747;overflow-wrap:anywhere}
+.notice{margin-top:28px;border:1px solid #253653;border-radius:12px;padding:16px;color:#aab8cf;font-size:12px;line-height:1.7;background:#0c1424}
+footer{border-top:1px solid #1b2942;padding:24px 6%;text-align:center;color:#77869e;font-size:12px}
+@media(min-width:650px){.games{grid-template-columns:repeat(3,minmax(0,1fr))}.hero{padding-top:80px;padding-bottom:55px}.game-image{height:180px}}
 </style>
 </head>
+
 <body>
-<div class="app">
-<header class="topbar">
-  <div class="brand"><div class="brand-icon">V</div><div class="brand-name">VORN<span>GAMESTORE</span></div></div>
-  <div class="user-tools"><div class="avatar" id="avatar">🎮</div><div class="coin-pill">🪙 <b id="coinCount">0</b></div></div>
+<header>
+  <div class="logo">VORN<span> STORE</span></div>
+  <div class="status">● DIGITAL STORE</div>
 </header>
-<main id="homeView">
-<section class="balance">
-  <div class="balance-top"><div><div class="eyebrow">BALANSINGIZ</div><div class="amount"><span id="balanceAmount">0</span> <small>so‘m</small></div></div><div class="wallet-art">👛</div></div>
-  <div class="quick-actions">
-    <button class="quick-action" data-modal="topup"><span class="icon">💳</span><span>Hisobni to‘ldirish</span></button>
-    <button class="quick-action" data-modal="promo"><span class="icon">🎟️</span><span>Promo kod</span></button>
-    <button class="quick-action" data-modal="support"><span class="icon">💬</span><span>Yordam</span></button>
+
+<section class="hero">
+  <div class="tag">YOUR GAME. YOUR POWER.</div>
+  <h1>LEVEL UP WITH<br><span>VORN STORE</span></h1>
+  <p>Sevimli o‘yinlaringiz uchun raqamli mahsulotlar.<br>
+  Tezkor, qulay va zamonaviy do‘kon.</p>
+</section>
+
+<main class="section">
+  <h2>🎮 Mahsulotlar</h2>
+  <p class="sub">O‘zingizga kerakli xizmatni tanlang.</p>
+
+  <div class="games">
+
+    <div class="game">
+      <img class="game-image" src="https://placehold.co/600x320/321019/ffffff?text=FREE+FIRE" alt="Free Fire" loading="lazy">
+      <div class="game-info">
+        <h3>Free Fire</h3><p>Diamonds</p>
+        <button onclick="choose('Free Fire')">Tanlash →</button>
+      </div>
+    </div>
+
+    <div class="game">
+      <img class="game-image" src="https://placehold.co/600x320/102b50/ffffff?text=PUBG+MOBILE" alt="PUBG Mobile" loading="lazy">
+      <div class="game-info">
+        <h3>PUBG Mobile</h3><p>UC</p>
+        <button onclick="choose('PUBG Mobile')">Tanlash →</button>
+      </div>
+    </div>
+
+    <div class="game">
+      <img class="game-image" src="https://placehold.co/600x320/19164b/ffffff?text=MOBILE+LEGENDS" alt="Mobile Legends" loading="lazy">
+      <div class="game-info">
+        <h3>Mobile Legends</h3><p>Diamonds</p>
+        <button onclick="choose('Mobile Legends')">Tanlash →</button>
+      </div>
+    </div>
+
+    <div class="game">
+      <img class="game-image" src="https://placehold.co/600x320/302050/ffffff?text=BRAWL+STARS" alt="Brawl Stars" loading="lazy">
+      <div class="game-info">
+        <h3>Brawl Stars</h3><p>O‘yin mahsulotlari</p>
+        <button onclick="choose('Brawl Stars')">Tanlash →</button>
+      </div>
+    </div>
+
+    <div class="game">
+      <img class="game-image" src="https://placehold.co/600x320/322b08/ffffff?text=TELEGRAM+STARS" alt="Telegram Stars" loading="lazy">
+      <div class="game-info">
+        <h3>Telegram Stars</h3><p>Stars</p>
+        <button onclick="choose('Telegram Stars')">Tanlash →</button>
+      </div>
+    </div>
+
+    <div class="game">
+      <img class="game-image" src="https://placehold.co/600x320/102b50/ffffff?text=TELEGRAM+PREMIUM" alt="Telegram Premium" loading="lazy">
+      <div class="game-info">
+        <h3>Telegram Premium</h3><p>Premium obuna</p>
+        <button onclick="choose('Telegram Premium')">Tanlash →</button>
+      </div>
+    </div>
+
   </div>
-</section>
-<div class="section-head"><h2>🎮 Mashhur o‘yinlar</h2><button class="view-all" id="viewAll">Barchasi ›</button></div>
-<div class="category-row" id="categories"><button class="chip active" data-filter="all">Barchasi</button><button class="chip" data-filter="game">O‘yinlar</button><button class="chip" data-filter="telegram">Telegram</button></div>
-<section class="games" id="games">
-  <button class="game-card" data-kind="game" data-product="PUBG MOBILE"><div class="game-art art-pubg"><span class="corner-label">GLOBAL</span><span class="logo-fallback">PUBG<small>MOBILE</small></span></div><div class="game-info"><div class="game-title">PUBG MOBILE</div><div class="game-subtitle">UC to‘ldirish ›</div></div></button>
-  <button class="game-card" data-kind="game" data-product="FREE FIRE"><div class="game-art art-freefire"><span class="corner-label">GLOBAL</span><span class="logo-fallback">FREE F<span style="color:#ffc43d">I</span>RE</span></div><div class="game-info"><div class="game-title">FREE FIRE</div><div class="game-subtitle">Diamonds ›</div></div></button>
-  <button class="game-card" data-kind="game" data-product="MOBILE LEGENDS"><div class="game-art art-ml"><span class="corner-label">GLOBAL</span><span class="logo-fallback" style="color:#f2d393">✦ MOBILE<small>LEGENDS</small></span></div><div class="game-info"><div class="game-title">MOBILE LEGENDS</div><div class="game-subtitle">Diamonds ›</div></div></button>
-  <button class="game-card" data-kind="game" data-product="STANDOFF 2"><div class="game-art art-standoff"><span class="corner-label">TOP GAME</span><span class="logo-fallback">STANDOFF<small>2</small></span></div><div class="game-info"><div class="game-title">STANDOFF 2</div><div class="game-subtitle">Gold xaridi ›</div></div></button>
-</section>
-<div class="section-head"><h2>✨ Telegram xizmatlari</h2></div>
-<section class="services">
-  <article class="service-card" data-kind="telegram"><div class="service-art">⭐</div><h3>Telegram Stars</h3><p>Stars xarid qilish</p><button class="arrow-btn" data-product="Telegram Stars" aria-label="Telegram Stars">→</button></article>
-  <article class="service-card" data-kind="telegram"><div class="service-art">🌟</div><h3>Premium</h3><p>Premium obuna</p><button class="arrow-btn" data-product="Telegram Premium" aria-label="Telegram Premium">→</button></article>
-  <article class="service-card" data-kind="telegram"><div class="service-art">🎁</div><h3>Telegram Gifts</h3><p>Sovg‘alar va boxlar</p><button class="arrow-btn" data-product="Telegram Gifts" aria-label="Telegram Gifts">→</button></article>
-</section>
-<div class="promo-banner"><div><strong>🎁 Maxsus takliflar</strong><p>Yangiliklar va chegirmalar shu yerda bo‘ladi.</p></div><div class="promo-icon">✨</div></div>
+
+  <div id="message" role="status" aria-live="polite"></div>
+
+  <div class="notice">
+    <strong>ℹ️ Muhim ma’lumot</strong><br>
+    VORN STORE hozir sinov versiyasida. Haqiqiy buyurtma,
+    to‘lov va avtomatik yetkazib berish hali ulanmagan.
+  </div>
 </main>
-<section id="otherView" hidden><div class="section-head"><h2 id="otherTitle">Buyurtmalar</h2></div><div class="empty" id="otherText">Buyurtmalar tarixi backend ulangandan keyin ko‘rinadi.</div></section>
-<footer class="footer">VORNGAMESTORE · O‘yinlar va raqamli xizmatlar</footer>
-</div>
-<nav class="bottom-nav" aria-label="Asosiy navigatsiya">
-<button class="active" data-tab="home"><span class="nav-icon">⌂</span>Bosh sahifa</button>
-<button data-tab="orders"><span class="nav-icon">▤</span>Buyurtmalar</button>
-<button data-tab="wallet"><span class="nav-icon">▣</span>Hamyon</button>
-<button data-tab="profile"><span class="nav-icon">♙</span>Profil</button>
-</nav>
-<div class="toast" id="toast" role="status"></div>
-<div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
- <div class="modal"><div class="modal-head"><h3 id="modalTitle">Mahsulot</h3><button class="close" id="closeModal">✕</button></div><p class="modal-desc" id="modalDesc">Mahsulotni tanlang.</p><div id="modalBody"></div></div>
-</div>
+
+<footer>© 2026 VORN STORE · Digital Gaming Store</footer>
+
 <script>
-const tg=window.Telegram?.WebApp;
-if(tg){tg.ready();tg.expand();try{tg.setHeaderColor('#080d1c');tg.setBackgroundColor('#080d1c')}catch(e){}}
-let toastTimer, selectedProduct='';
-const toast=document.getElementById('toast');
-function notify(msg){toast.textContent=msg;toast.style.display='block';clearTimeout(toastTimer);toastTimer=setTimeout(()=>toast.style.display='none',2800)}
-const backdrop=document.getElementById('modalBackdrop'),modalTitle=document.getElementById('modalTitle'),modalDesc=document.getElementById('modalDesc'),modalBody=document.getElementById('modalBody');
-function openModal(type,product=''){
- selectedProduct=product;modalBody.innerHTML='';
- if(type==='product'){
-  modalTitle.textContent=product;modalDesc.textContent='Kerakli paketni tanlang. Narxlar va real buyurtmalar uchun mahsulotlar backendga ulanishi kerak.';
-  const options=product==='PUBG MOBILE'?[['60 UC','Narxni sozlash'],['325 UC','Narxni sozlash'],['660 UC','Narxni sozlash'],['1800 UC','Narxni sozlash']]:product==='FREE FIRE'?[['100 Diamonds','Narxni sozlash'],['310 Diamonds','Narxni sozlash'],['520 Diamonds','Narxni sozlash'],['1060 Diamonds','Narxni sozlash']]:product==='MOBILE LEGENDS'?[['86 Diamonds','Narxni sozlash'],['172 Diamonds','Narxni sozlash'],['257 Diamonds','Narxni sozlash'],['706 Diamonds','Narxni sozlash']]:product==='STANDOFF 2'?[['100 Gold','Narxni sozlash'],['500 Gold','Narxni sozlash'],['1000 Gold','Narxni sozlash'],['3000 Gold','Narxni sozlash']]:[['Kichik paket','Narxni sozlash'],['O‘rta paket','Narxni sozlash'],['Katta paket','Narxni sozlash'],['Maxsus paket','Narxni sozlash']];
-  modalBody.innerHTML='<div class="product-options">'+options.map(o=>'<button class="product-option" data-pack="'+o[0]+'"><strong>'+o[0]+'</strong><small>'+o[1]+'</small></button>').join('')+'</div><button class="primary" id="continueOrder">Davom etish</button>';
-  modalBody.querySelectorAll('[data-pack]').forEach(b=>b.onclick=()=>{modalBody.querySelectorAll('[data-pack]').forEach(x=>x.style.borderColor='#344a74');b.style.borderColor='#39e5ff';selectedProduct=product+' — '+b.dataset.pack});
-  document.getElementById('continueOrder').onclick=()=>notify('Buyurtma tizimi va narxlar serverga ulangach ishlaydi.');
- }else if(type==='topup'){
-  modalTitle.textContent='Hisobni to‘ldirish';modalDesc.textContent='Summani kiriting. Hozircha demo — to‘lov amalga oshirilmaydi.';
-  modalBody.innerHTML='<input class="field" id="topupAmount" type="number" min="1000" placeholder="Summa (so‘m)"><button class="primary" id="topupGo">Davom etish</button>';
-  document.getElementById('topupGo').onclick=()=>{const n=Number(document.getElementById('topupAmount').value);if(n<1000)return notify('Kamida 1 000 so‘m kiriting.');notify('To‘lov provayderi ulanmagan — pul yechilmaydi.');closeModal()};
- }else if(type==='promo'){
-  modalTitle.textContent='Promo kod';modalDesc.textContent='Promo kodingizni kiriting. Kod serverda tekshirilishi kerak.';
-  modalBody.innerHTML='<input class="field" id="promoInput" placeholder="PROMO KOD"><button class="primary" id="promoGo">Tekshirish</button>';
-  document.getElementById('promoGo').onclick=()=>{if(!document.getElementById('promoInput').value.trim())return notify('Promo kodni kiriting.');notify('Promo kodni tekshirish serverga ulanmagan.');closeModal()};
- }else{
-  modalTitle.textContent='Qo‘llab-quvvatlash';modalDesc.textContent='Admin username yoki support havolasini kodda sozlang.';
-  modalBody.innerHTML='<p class="modal-desc">Support havolasi qo‘shilgach, shu yerdan operator bilan bog‘lanish mumkin.</p><button class="primary" id="supportGo">Tushunarli</button>';
-  document.getElementById('supportGo').onclick=closeModal;
- }
- backdrop.classList.add('show');
+function choose(product){
+  const message=document.getElementById('message');
+  message.textContent=product+' tanlandi! Buyurtma berish xizmati tez orada ulanadi.';
+  message.style.display='block';
+  message.scrollIntoView({behavior:'smooth',block:'nearest'});
 }
-function closeModal(){backdrop.classList.remove('show')}
-document.getElementById('closeModal').onclick=closeModal;
-backdrop.addEventListener('click',e=>{if(e.target===backdrop)closeModal()});
-document.querySelectorAll('[data-modal]').forEach(b=>b.addEventListener('click',()=>openModal(b.dataset.modal)));
-document.querySelectorAll('[data-product]').forEach(b=>b.addEventListener('click',e=>{e.stopPropagation();openModal('product',b.dataset.product)}));
-document.querySelectorAll('.game-card').forEach(b=>b.addEventListener('click',()=>openModal('product',b.dataset.product)));
-document.querySelectorAll('[data-filter]').forEach(b=>b.addEventListener('click',()=>{
- document.querySelectorAll('[data-filter]').forEach(x=>x.classList.remove('active'));b.classList.add('active');
- const f=b.dataset.filter;
- document.querySelectorAll('.game-card').forEach(x=>x.hidden=f==='telegram');
- document.querySelectorAll('.service-card').forEach(x=>x.hidden=f==='game');
-}));
-document.getElementById('viewAll').onclick=()=>{document.querySelector('[data-filter="all"]').click();notify('Barcha mahsulotlar ko‘rsatildi.')};
-document.querySelectorAll('[data-tab]').forEach(b=>b.addEventListener('click',()=>{
- document.querySelectorAll('[data-tab]').forEach(x=>x.classList.remove('active'));b.classList.add('active');
- const home=b.dataset.tab==='home';document.getElementById('homeView').hidden=!home;document.getElementById('otherView').hidden=home;
- if(!home){const titles={orders:'Buyurtmalar',wallet:'Hamyon',profile:'Profil'};const texts={orders:'Buyurtmalar tarixi backend ulangandan keyin ko‘rinadi.',wallet:'Balans va to‘lovlar uchun to‘lov tizimi ulanishi kerak.',profile:'Telegram foydalanuvchi ma’lumotlari Mini App orqali ulanadi.'};document.getElementById('otherTitle').textContent=titles[b.dataset.tab];document.getElementById('otherText').textContent=texts[b.dataset.tab];window.scrollTo({top:0,behavior:'smooth'})}
-}));
 </script>
 </body>
 </html>
