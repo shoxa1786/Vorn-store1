@@ -1,265 +1,137 @@
-
 <!DOCTYPE html>
 <html lang="uz">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport"
- content="width=device-width, initial-scale=1, maximum-scale=1">
-<title>PIXELHUB</title>
-<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#070c1d">
+<title>VORNGAMESTORE — Game Top Up</title>
 <style>
-:root {
-  --bg: #080d1e;
-  --card: #111a35;
-  --blue: #167bff;
-  --cyan: #32e5ff;
-  --purple: #7c3cff;
-  --muted: #9aa8c9;
-}
-* { box-sizing: border-box; }
-body {
-  margin: 0;
-  background: var(--bg);
-  color: #fff;
-  font-family: system-ui, sans-serif;
-  padding: 18px 15px 100px;
-}
-button { font: inherit; cursor: pointer; }
-.header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin: 8px 0 26px;
-}
-.brand { display:flex; align-items:center; gap:10px; }
-.logo {
-  width:45px;height:45px;border-radius:15px;
-  display:grid;place-items:center;
-  background:linear-gradient(135deg,#14d8ff,#643bff);
-  font-size:25px;
-  box-shadow:0 0 22px #265cff66;
-}
-.brand h1 {font-size:22px;margin:0;letter-spacing:1px;}
-.coins {
-  background:#18213b;border:1px solid #29365c;
-  border-radius:30px;padding:10px 15px;
-}
-.balance {
-  padding:23px 20px 20px;
-  border-radius:27px;
-  background:linear-gradient(130deg,#087fca,#193de0 58%,#6928dc);
-  border:1px solid #58dfff88;
-  box-shadow:0 10px 35px #174aff20;
-}
-.muted {color:#c2d2ff;font-size:13px;}
-.amount {font-size:43px;font-weight:750;margin:3px 0 20px;}
-.actions {display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
-.action {
-  color:white;background:#ffffff13;
-  border:1px solid #ffffff40;border-radius:15px;
-  padding:13px 3px;font-size:12px;
-}
-.action span {display:block;font-size:21px;margin-bottom:5px;}
-.section-title {
-  display:flex;justify-content:space-between;
-  align-items:center;margin:29px 0 15px;
-}
-.section-title h2 {font-size:18px;margin:0;}
-.link {color:var(--cyan);background:none;border:0;}
-.games {
-  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:11px;
-}
-.game {
-  min-width:0;padding:0;background:var(--card);
-  color:white;border:1px solid #344568;border-radius:17px;
-  overflow:hidden;text-align:left;
-}
-.cover {
-  height:135px;display:flex;align-items:center;
-  justify-content:center;font-size:48px;
-  background:linear-gradient(155deg,#164f87,#071328);
-}
-.game:nth-child(2) .cover {
-  background:linear-gradient(155deg,#872c35,#24102b);
-}
-.game:nth-child(3) .cover {
-  background:linear-gradient(155deg,#2364c9,#11122d);
-}
-.game-name {
-  display:block;padding:9px 5px 11px;
-  text-align:center;font-size:11px;font-weight:650;
-}
-.services {
-  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:10px;
-}
-.service {
-  min-width:0;border:1px solid #394a85;
-  border-radius:19px;padding:13px 5px;
-  text-align:center;
-  background:linear-gradient(165deg,#142b58,#11132f);
-}
-.service .art {font-size:43px;margin:8px 0 12px;}
-.service h3 {font-size:13px;margin:0 0 7px;}
-.service p {font-size:11px;line-height:1.5;color:var(--muted);margin:0 0 12px;}
-.go {
-  background:linear-gradient(100deg,#087fe8,#633bff);
-  color:white;border:0;border-radius:20px;padding:6px 18px;
-}
-.nav {
-  position:fixed;z-index:10;bottom:10px;left:12px;right:12px;
-  padding:9px 5px;
-  border-radius:25px;
-  background:#131b32f5;
-  border:1px solid #34405e;
-  display:grid;grid-template-columns:repeat(4,1fr);
-  backdrop-filter:blur(18px);
-}
-.nav button {
-  background:transparent;color:var(--muted);
-  border:0;border-radius:17px;padding:9px 0;
-  font-size:11px;
-}
-.nav button span {display:block;font-size:22px;margin-bottom:4px;}
-.nav button.active {
-  color:var(--cyan);
-  background:linear-gradient(135deg,#174a9c,#222c79);
-  box-shadow:inset 0 0 0 1px #348cff;
-}
-.toast {
-  position:fixed;bottom:95px;left:50%;
-  transform:translateX(-50%);
-  background:#202d4d;padding:12px 18px;
-  border-radius:14px;font-size:13px;
-  display:none;white-space:nowrap;
-}
-@media(max-width:360px) {
-  body{padding-left:10px;padding-right:10px;}
-  .cover{height:110px;}
-  .brand h1{font-size:19px;}
-}
+:root{--bg:#070c1d;--panel:#101a34;--muted:#9eadd0;--cyan:#31e4ff;--blue:#167bff;--purple:#773cff;--line:#26385e}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(ellipse at 50% -15%,#162b64 0%,var(--bg) 48%);color:#f7f9ff;font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;padding:18px 15px calc(105px + env(safe-area-inset-bottom));min-height:100vh}
+button,a{font:inherit}
+button{cursor:pointer}
+.shell{max-width:1040px;margin:auto}
+header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:4px 0 25px}
+.brand{display:flex;align-items:center;gap:10px;min-width:0}
+.brand-mark{width:43px;height:43px;border-radius:14px;display:grid;place-items:center;font-size:24px;font-weight:900;background:linear-gradient(145deg,#25eaff,#155bff 55%,#9a39ff);box-shadow:0 0 24px #247dff66;color:white}
+.brand-name{font-size:clamp(15px,4.5vw,24px);font-weight:900;letter-spacing:.5px;white-space:nowrap}
+.brand-name span{color:var(--cyan)}
+.user-area{display:flex;align-items:center;gap:9px}
+.avatar{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(145deg,#0fcdf5,#533cff);border:2px solid #36cfff;font-size:20px}
+.coin{border:1px solid #2c3a60;border-radius:25px;padding:10px 14px;background:#121b31;white-space:nowrap}
+.balance{position:relative;overflow:hidden;border-radius:26px;padding:23px 20px 20px;background:linear-gradient(120deg,#086bc8 0%,#163be0 54%,#6225cc 100%);border:1px solid #55d9ff88;box-shadow:0 15px 40px #153baf2b}
+.balance:after{content:"";position:absolute;width:180px;height:180px;border-radius:50%;right:-45px;top:-75px;background:#8a7bff22;filter:blur(2px);pointer-events:none}
+.eyebrow{font-size:13px;color:#d0e4ff;letter-spacing:.8px}
+.amount{font-size:clamp(40px,9vw,58px);font-weight:800;line-height:1.15;margin:7px 0 20px;letter-spacing:-2px}
+.amount small{font-size:19px;letter-spacing:0;color:#56edff}
+.balance-actions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;border-top:1px solid #ffffff30;padding-top:18px}
+.action{min-width:0;color:#fff;background:#ffffff12;border:1px solid #ffffff36;border-radius:15px;padding:12px 4px;font-size:clamp(10px,2.6vw,13px);transition:.2s}
+.action:hover{background:#ffffff25;transform:translateY(-2px)}
+.action .ico{display:block;font-size:23px;margin-bottom:5px}
+.section-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:29px 0 14px}
+.section-head h2{font-size:19px;margin:0;letter-spacing:-.3px}
+.text-btn{color:var(--cyan);background:none;border:0;padding:7px 0}
+.games{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px}
+.game{border:1px solid #29476b;border-radius:18px;overflow:hidden;background:#0b1429;color:white;padding:0;text-align:center;min-width:0;transition:transform .2s,border-color .2s}
+.game:hover{transform:translateY(-3px);border-color:#3bdcff}
+.game-logo{height:145px;display:flex;align-items:center;justify-content:center;padding:12px;position:relative;overflow:hidden;background:radial-gradient(ellipse at 50% 20%,#14599b,#071326 72%)}
+.game:nth-child(2) .game-logo{background:radial-gradient(ellipse at 50% 20%,#9c332c,#1b1024 72%)}
+.game:nth-child(3) .game-logo{background:radial-gradient(ellipse at 50% 20%,#1b65bb,#0a1024 72%)}
+.game-logo:before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,#ffffff08,transparent 55%,#6c56ff13)}
+.wordmark{position:relative;font-weight:1000;font-style:italic;line-height:1.02;text-shadow:0 3px 15px #0009;letter-spacing:-.7px}
+.pubg{font-size:clamp(16px,4vw,27px);border:3px solid white;padding:6px 7px;outline:1px solid #ffffffaa;outline-offset:3px}
+.freefire{font-size:clamp(14px,3.7vw,23px);letter-spacing:-1px}
+.freefire i{color:#ffbf38;font-style:normal}
+.ml{font-size:clamp(12px,3vw,21px);color:#f4d08b}
+.game-name{display:block;padding:10px 4px 12px;font-size:clamp(10px,2.8vw,13px);font-weight:750;white-space:nowrap}
+.services{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px}
+.service{min-width:0;text-align:center;padding:13px 6px 15px;border-radius:20px;border:1px solid #2856b3;background:linear-gradient(160deg,#102a55,#0b1430 75%);position:relative;overflow:hidden}
+.service:nth-child(2){border-color:#6635cf;background:linear-gradient(160deg,#2a175b,#100e2d 75%)}
+.service:nth-child(3){border-color:#8736ad;background:linear-gradient(160deg,#35144d,#100e2a 75%)}
+.service-art{height:105px;display:grid;place-items:center;font-size:65px;text-shadow:0 0 28px #48bfff77}
+.service h3{font-size:clamp(11px,3vw,15px);margin:6px 0 8px}
+.service p{font-size:clamp(10px,2.7vw,12px);line-height:1.45;color:var(--muted);min-height:34px;margin:0 0 12px}
+.go{width:55px;height:38px;border:0;border-radius:25px;color:white;font-size:23px;background:linear-gradient(110deg,#087be7,#5235ff);box-shadow:0 4px 18px #275dff33}
+.service:nth-child(3) .go{background:linear-gradient(110deg,#8d2cba,#5925a9)}
+.bottom-nav{position:fixed;z-index:5;bottom:calc(10px + env(safe-area-inset-bottom));left:12px;right:12px;max-width:1016px;margin:auto;padding:8px 5px;border-radius:25px;background:#111a31ed;border:1px solid #2b3b5c;box-shadow:0 12px 35px #0007;backdrop-filter:blur(20px);display:grid;grid-template-columns:repeat(4,1fr)}
+.bottom-nav button{border:0;background:transparent;color:#9aa9c8;border-radius:18px;padding:8px 2px;font-size:11px}
+.bottom-nav .nav-ico{display:block;font-size:22px;margin-bottom:4px}
+.bottom-nav button.active{color:#47e8ff;background:linear-gradient(145deg,#164aa8,#20266b);box-shadow:inset 0 0 0 1px #308fff}
+.toast{position:fixed;z-index:10;left:50%;bottom:105px;transform:translateX(-50%);background:#1c2b4d;border:1px solid #3d5785;color:white;border-radius:13px;padding:12px 16px;font-size:13px;box-shadow:0 8px 25px #0008;display:none;max-width:90%;text-align:center}
+footer{text-align:center;color:#617194;font-size:11px;margin:25px 0 0}
+@media(min-width:700px){body{padding-top:28px}.balance{padding:28px 30px}.games{gap:16px}.game-logo{height:220px}.services{gap:16px}.service{padding:20px}.service-art{height:130px;font-size:78px}.section-head h2{font-size:22px}}
+@media(max-width:360px){body{padding-left:10px;padding-right:10px}.brand-mark{width:37px;height:37px}.avatar{display:none}.game-logo{height:105px}.service-art{height:78px;font-size:49px}.balance{padding:19px 13px}.action .ico{font-size:20px}}
 </style>
 </head>
 <body>
-
-<header class="header">
+<div class="shell">
+<header>
   <div class="brand">
-    <div class="logo">⚡</div>
-    <h1>PIXELHUB</h1>
+    <div class="brand-mark">V</div>
+    <div class="brand-name">VORN<span>GAMESTORE</span></div>
   </div>
-  <div class="coins">🪙 <b>0</b></div>
+  <div class="user-area">
+    <div class="avatar" aria-label="Profil">🎮</div>
+    <div class="coin">🪙 <b id="coinCount">0</b></div>
+  </div>
 </header>
 
+<main>
 <section class="balance">
-  <div class="muted">BALANSINGIZ</div>
-  <div class="amount">0 <span style="font-size:20px">so'm</span></div>
-  <div class="actions">
-    <button class="action" onclick="notify('Balansni to‘ldirish')">
-      <span>💳</span>Hisobni to‘ldirish
-    </button>
-    <button class="action" onclick="notify('Promo kod kiriting')">
-      <span>🎟️</span>Promo kod
-    </button>
-    <button class="action" onclick="notify('Qo‘llab-quvvatlash')">
-      <span>💬</span>Yordam
-    </button>
+  <div class="eyebrow">BALANSINGIZ</div>
+  <div class="amount"><span id="balanceAmount">0</span> <small>so'm</small></div>
+  <div class="balance-actions">
+    <button class="action" onclick="notify('Balansni to‘ldirish uchun to‘lov tizimi ulanishi kerak.')"><span class="ico">💳</span>Hisobni to‘ldirish</button>
+    <button class="action" onclick="showPromo()"><span class="ico">🎟️</span>Promo kod</button>
+    <button class="action" onclick="notify('Qo‘llab-quvvatlash: Telegram admin havolasini sozlang.')"><span class="ico">🎧</span>Yordam</button>
   </div>
 </section>
 
-<div class="section-title">
-  <h2>🎮 Mashhur o‘yinlar</h2>
-  <button class="link" onclick="notify('Barcha o‘yinlar')">
-    Barchasi ›
-  </button>
-</div>
-
-<section class="games">
-  <button class="game" onclick="selectGame('PUBG MOBILE')">
-    <div class="cover">🎯</div>
-    <span class="game-name">PUBG MOBILE</span>
-  </button>
-  <button class="game" onclick="selectGame('FREE FIRE')">
-    <div class="cover">🔥</div>
-    <span class="game-name">FREE FIRE</span>
-  </button>
-  <button class="game" onclick="selectGame('MOBILE LEGENDS')">
-    <div class="cover">⚔️</div>
-    <span class="game-name">MOBILE LEGENDS</span>
-  </button>
+<div class="section-head"><h2>🎮 Mashhur o‘yinlar</h2><button class="text-btn" onclick="notify('Barcha o‘yinlar tez orada qo‘shiladi.')">Barchasi ›</button></div>
+<section class="games" aria-label="O‘yinlar">
+  <button class="game" onclick="choose('PUBG MOBILE')"><div class="game-logo"><span class="wordmark pubg">PUBG<br><small style="font-size:.55em;letter-spacing:2px">MOBILE</small></span></div><span class="game-name">PUBG MOBILE</span></button>
+  <button class="game" onclick="choose('FREE FIRE')"><div class="game-logo"><span class="wordmark freefire">FREE F<span style="color:#ffbf38">I</span>RE</span></div><span class="game-name">FREE FIRE</span></button>
+  <button class="game" onclick="choose('MOBILE LEGENDS')"><div class="game-logo"><span class="wordmark ml">✦ MOBILE<br>LEGENDS<br><small style="font-size:.48em;letter-spacing:2px">BANG BANG</small></span></div><span class="game-name">MOBILE LEGENDS</span></button>
 </section>
 
-<div class="section-title">
-  <h2>✨ Maxsus takliflar</h2>
-</div>
-
+<div class="section-head"><h2>✨ Telegram xizmatlari</h2></div>
 <section class="services">
-  <article class="service">
-    <div class="art">⭐</div>
-    <h3>Telegram Stars</h3>
-    <p>Stars xarid qilish</p>
-    <button class="go" onclick="order('Telegram Stars')">→</button>
-  </article>
-  <article class="service">
-    <div class="art">👑</div>
-    <h3>Premium</h3>
-    <p>Premium obuna</p>
-    <button class="go" onclick="order('Telegram Premium')">→</button>
-  </article>
-  <article class="service">
-    <div class="art">🎁</div>
-    <h3>Gift Box</h3>
-    <p>Sovg‘alar</p>
-    <button class="go" onclick="order('Gift Box')">→</button>
-  </article>
+  <article class="service"><div class="service-art">⭐</div><h3>Telegram Stars</h3><p>Stars xarid qilish</p><button class="go" aria-label="Stars tanlash" onclick="choose('Telegram Stars')">→</button></article>
+  <article class="service"><div class="service-art">🌟</div><h3>Premium</h3><p>Premium obuna</p><button class="go" aria-label="Premium tanlash" onclick="choose('Telegram Premium')">→</button></article>
+  <article class="service"><div class="service-art">🎁</div><h3>Telegram Gifts</h3><p>Sovg‘alar va boxlar</p><button class="go" aria-label="Gifts tanlash" onclick="choose('Telegram Gifts')">→</button></article>
 </section>
+</main>
+<footer>VORNGAMESTORE · O‘yinlar va raqamli xizmatlar</footer>
+</div>
 
-<nav class="nav">
-  <button class="active" onclick="tab(this,'Bosh sahifa')">
-    <span>⌂</span>Bosh sahifa
-  </button>
-  <button onclick="tab(this,'Buyurtmalar')">
-    <span>▤</span>Buyurtmalar
-  </button>
-  <button onclick="tab(this,'Hamyon')">
-    <span>▣</span>Hamyon
-  </button>
-  <button onclick="tab(this,'Profil')">
-    <span>♙</span>Profil
-  </button>
+<nav class="bottom-nav" aria-label="Asosiy navigatsiya">
+  <button class="active" onclick="setTab(this,'Bosh sahifa')"><span class="nav-ico">⌂</span>Bosh sahifa</button>
+  <button onclick="setTab(this,'Buyurtmalar')"><span class="nav-ico">▤</span>Buyurtmalar</button>
+  <button onclick="setTab(this,'Hamyon')"><span class="nav-ico">▣</span>Hamyon</button>
+  <button onclick="setTab(this,'Profil')"><span class="nav-ico">♙</span>Profil</button>
 </nav>
-
-<div class="toast" id="toast"></div>
-
+<div id="toast" class="toast" role="status"></div>
 <script>
-const tg = window.Telegram?.WebApp;
-tg?.ready();
-tg?.expand();
-
-function notify(message) {
-  const el = document.getElementById('toast');
-  el.textContent = message;
-  el.style.display = 'block';
-  clearTimeout(window.toastTimer);
-  window.toastTimer = setTimeout(() => {
-    el.style.display = 'none';
-  }, 2200);
+const tg = window.Telegram && window.Telegram.WebApp;
+if(tg){tg.ready();tg.expand();try{tg.setHeaderColor('#070c1d');tg.setBackgroundColor('#070c1d')}catch(e){}}
+let toastTimer;
+function notify(message){
+ const el=document.getElementById('toast');el.textContent=message;el.style.display='block';
+ clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.style.display='none',2600);
 }
-
-function selectGame(name) {
-  notify(name + ' tanlandi');
+function choose(name){notify(name+' tanlandi. Buyurtma berish uchun mahsulot sahifasi/backend ulanishi kerak.')}
+function showPromo(){
+ const code=prompt('Promo kodni kiriting:');
+ if(code===null)return;
+ if(code.trim())notify('Promo kod tekshirish uchun serverga ulanishi kerak.');
+ else notify('Promo kod kiritilmadi.');
 }
-
-function order(name) {
-  notify(name + ' bo‘limi tanlandi');
-}
-
-function tab(button, name) {
-  document.querySelectorAll('.nav button').forEach(el =>
-    el.classList.remove('active')
-  );
-  button.classList.add('active');
-  if (name !== 'Bosh sahifa') notify(name + ' bo‘limi');
+function setTab(button,name){
+ document.querySelectorAll('.bottom-nav button').forEach(b=>b.classList.remove('active'));
+ button.classList.add('active');
+ if(name!=='Bosh sahifa')notify(name+' bo‘limi — keyingi bosqichda ulanadi.');
 }
 </script>
 </body>
