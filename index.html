@@ -1,214 +1,280 @@
 <!DOCTYPE html>
 <html lang="uz">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#080d1b">
-  <title>VORN STORE | Game Top-Up</title>
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      background: #080d1b;
-      color: #fff;
-      font-family: Arial, sans-serif;
-      min-height: 100vh;
-    }
-
-    header {
-      padding: 22px 6%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid #1b2942;
-      gap: 10px;
-    }
-
-    .logo { font-size: 25px; font-weight: 900; letter-spacing: 2px; }
-    .logo span { color: #20a4ff; }
-
-    .status {
-      color: #72e7ff;
-      font-size: 11px;
-      border: 1px solid #164e75;
-      padding: 8px 12px;
-      border-radius: 20px;
-    }
-
-    .hero {
-      padding: 55px 6% 35px;
-      background: radial-gradient(ellipse at 50% 0%, #123c70 0%, #080d1b 65%);
-      text-align: center;
-    }
-
-    .tag {
-      color: #37b5ff;
-      font-size: 12px;
-      font-weight: bold;
-      letter-spacing: 3px;
-    }
-
-    h1 { font-size: clamp(36px, 8vw, 65px); margin: 16px 0; line-height: 1.08; }
-    h1 span { color: #24a8ff; text-shadow: 0 0 30px #087bff70; }
-    .hero p { color: #aab8cf; line-height: 1.7; font-size: 14px; }
-    .section { padding: 25px 6% 55px; max-width: 1200px; margin: auto; }
-    .section h2 { font-size: 23px; margin-bottom: 8px; }
-    .sub { color: #8c9ab1; font-size: 13px; margin-bottom: 25px; }
-
-    .games {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
-    }
-
-    .game {
-      background: linear-gradient(145deg, #15243c, #0d1425);
-      border: 1px solid #233653;
-      border-radius: 17px;
-      padding: 20px 12px;
-      text-align: center;
-      transition: .2s;
-    }
-
-    .game:hover { border-color: #24a8ff; transform: translateY(-3px); }
-    .emoji { font-size: 42px; margin-bottom: 13px; }
-    .game h3 { font-size: 15px; margin-bottom: 8px; }
-    .game p { font-size: 12px; color: #96a8c2; margin-bottom: 16px; }
-
-    button {
-      width: 100%;
-      background: linear-gradient(90deg, #087bff, #22b8ff);
-      border: none;
-      border-radius: 9px;
-      color: white;
-      padding: 12px 8px;
-      font-size: 13px;
-      font-weight: bold;
-      cursor: pointer;
-      touch-action: manipulation;
-    }
-
-    button:active { opacity: .8; }
-
-    #message {
-      display: none;
-      margin-top: 20px;
-      border: 1px solid #087bff;
-      border-radius: 12px;
-      padding: 16px;
-      color: #fff;
-      font-size: 14px;
-      line-height: 1.6;
-      background: #102747;
-      overflow-wrap: anywhere;
-    }
-
-    .notice {
-      margin-top: 28px;
-      border: 1px solid #253653;
-      border-radius: 12px;
-      padding: 16px;
-      color: #aab8cf;
-      font-size: 12px;
-      line-height: 1.7;
-      background: #0c1424;
-    }
-
-    footer {
-      border-top: 1px solid #1b2942;
-      padding: 24px 6%;
-      text-align: center;
-      color: #77869e;
-      font-size: 12px;
-    }
-
-    @media (min-width: 650px) {
-      .games { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-      .hero { padding-top: 80px; padding-bottom: 55px; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="theme-color" content="#080d1b">
+<title>VORN STORE</title>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#080d1b;--panel:#111c30;--line:#223550;--blue:#168cff;--muted:#91a3bd}
+body{background:var(--bg);color:#fff;font-family:Arial,sans-serif;padding-bottom:82px}
+button,input{font:inherit}
+button{cursor:pointer}
+header{padding:20px 18px 15px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:24px;font-weight:900;letter-spacing:1px}
+.logo span{color:#22a8ff}
+.pill{font-size:10px;color:#6edbff;border:1px solid #194c70;border-radius:20px;padding:8px}
+main{max-width:720px;margin:auto;padding:0 15px}
+.hero{background:radial-gradient(ellipse at top right,#164b83,#102039 48%,#101827);border:1px solid #234568;border-radius:22px;padding:23px 19px;margin:8px 0 24px;overflow:hidden}
+.eyebrow{font-size:10px;color:#66c7ff;letter-spacing:2px;font-weight:bold}
+.hero h1{font-size:30px;line-height:1.12;margin:13px 0}
+.hero h1 span{color:#36b5ff}
+.hero p{color:#b2c3d9;font-size:12px;line-height:1.6}
+.hero-badge{display:inline-block;margin-top:17px;background:#087bff;padding:9px 13px;border-radius:9px;font-size:11px;font-weight:bold}
+.section-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:7px}
+h2{font-size:20px}
+.small{color:var(--muted);font-size:11px}
+.search{width:100%;margin:14px 0 18px;background:#101b2e;border:1px solid var(--line);color:white;border-radius:12px;padding:14px;outline:none}
+.search:focus,input:focus{border-color:var(--blue)}
+.games{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.card{min-width:0;text-align:left;color:white;background:linear-gradient(145deg,#15243b,#0d1525);border:1px solid var(--line);border-radius:17px;padding:14px 12px;transition:.15s}
+.card:active{transform:scale(.98)}
+.game-icon{height:76px;border-radius:13px;background:linear-gradient(145deg,#1b3b62,#10213a);display:flex;align-items:center;justify-content:center;font-size:43px;margin-bottom:13px}
+.card h3{font-size:14px;margin-bottom:6px}
+.card p{font-size:11px;color:var(--muted);margin-bottom:13px}
+.card-cta{display:block;text-align:center;background:#087bff;border-radius:9px;padding:10px 4px;font-size:11px;font-weight:bold}
+.notice{margin:20px 0;background:#101b2b;border:1px solid var(--line);border-radius:13px;padding:14px;color:#a8bad0;font-size:11px;line-height:1.7}
+.screen-title{display:flex;align-items:center;gap:12px;margin:14px 0 20px}
+.back{background:#17263c;border:1px solid var(--line);color:white;width:40px;height:40px;border-radius:12px;font-size:20px}
+.product-banner{display:flex;align-items:center;gap:14px;background:linear-gradient(130deg,#14365d,#101a2c);border:1px solid #234668;border-radius:17px;padding:17px;margin-bottom:22px}
+.product-banner .game-icon{width:66px;height:66px;flex-shrink:0;margin:0;font-size:34px}
+.product-banner h2{font-size:18px;margin-bottom:5px}
+.product-banner p{font-size:11px;color:#a9bdd5}
+.package-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
+.package{background:#111c30;color:white;border:1px solid var(--line);border-radius:14px;padding:15px 12px;text-align:left;min-width:0}
+.package.selected{border-color:#299eff;background:#102b4a}
+.package .amount{font-weight:bold;font-size:14px;margin-bottom:9px}
+.package .price{color:#58bdff;font-size:15px;font-weight:bold}
+.package .unit{font-size:10px;color:var(--muted);margin-top:5px}
+.primary{width:100%;border:0;border-radius:12px;background:linear-gradient(90deg,#087bff,#22b8ff);color:white;padding:15px;font-size:13px;font-weight:bold;margin-top:18px}
+.primary:disabled{opacity:.4}
+.field-label{display:block;font-size:12px;color:#b8c8dd;margin:15px 0 8px}
+.field{width:100%;padding:14px;background:#101b2e;border:1px solid var(--line);border-radius:11px;color:white;outline:none}
+.hidden{display:none!important}
+.empty{text-align:center;padding:48px 15px;color:var(--muted);line-height:1.8}
+.empty .emoji{font-size:42px;margin-bottom:12px}
+.summary{background:#111c30;border:1px solid var(--line);border-radius:14px;padding:16px;margin-top:16px;font-size:12px;line-height:2}
+.summary strong{color:#5dbdff}
+.bottom-nav{position:fixed;z-index:10;bottom:0;left:0;right:0;background:#0c1423;border-top:1px solid #24334b;display:grid;grid-template-columns:repeat(3,1fr);padding:10px 8px calc(10px + env(safe-area-inset-bottom))}
+.nav-btn{border:0;background:transparent;color:#8193ad;font-size:10px;padding:5px}
+.nav-btn .nav-icon{display:block;font-size:20px;margin-bottom:5px}
+.nav-btn.active{color:#42b4ff}
+footer{text-align:center;color:#667891;font-size:10px;padding:22px}
+.toast{background:#123353;border:1px solid #2586cf;padding:13px;border-radius:12px;margin-top:14px;font-size:12px;line-height:1.6}
+@media(min-width:560px){.games,.package-list{grid-template-columns:repeat(3,minmax(0,1fr))}.hero h1{font-size:42px}}
+</style>
 </head>
 <body>
-  <header>
-    <div class="logo">VORN<span> STORE</span></div>
-    <div class="status">● DIGITAL STORE</div>
-  </header>
+<header>
+  <div class="logo">VORN<span> STORE</span></div>
+  <div class="pill">● DIGITAL STORE</div>
+</header>
 
-  <section class="hero">
-    <div class="tag">YOUR GAME. YOUR POWER.</div>
-    <h1>LEVEL UP WITH<br><span>VORN STORE</span></h1>
-    <p>Sevimli o‘yinlaringiz uchun raqamli mahsulotlar.<br>
-       Tezkor, qulay va zamonaviy do‘kon.</p>
-  </section>
+<main>
+<section id="home">
+  <div class="hero">
+    <div class="eyebrow">YOUR GAME. YOUR POWER.</div>
+    <h1>O‘YININGIZNI<br><span>KEYINGI DARAJAGA</span></h1>
+    <p>Sevimli o‘yinlaringiz va raqamli xizmatlaringiz — barchasi bir joyda.</p>
+    <div class="hero-badge">⚡️ MAHSULOTLARNI TANLANG</div>
+  </div>
+  <div class="section-head"><h2>🎮 Kategoriyalar</h2></div>
+  <p class="small">Kerakli mahsulotni tanlab, paketlar narxini ko‘ring.</p>
+  <input id="search" class="search" placeholder="🔎  O‘yin yoki xizmatni qidiring..." autocomplete="off">
+  <div id="games" class="games"></div>
+  <div class="notice">ℹ️ <b>VORN STORE sinov versiyasi</b><br>Paketlar va narxlar namunaviy. Hozircha haqiqiy to‘lov va avtomatik yetkazib berish ulanmagan.</div>
+</section>
 
-  <main class="section">
-    <h2>🎮 Mahsulotlar</h2>
-    <p class="sub">O‘zingizga kerakli xizmatni tanlang.</p>
+<section id="detail" class="hidden">
+  <div class="screen-title">
+    <button class="back" data-action="home" aria-label="Orqaga">‹</button>
+    <div><h2 id="detail-heading">Mahsulot</h2><p class="small">Paketni tanlang</p></div>
+  </div>
+  <div id="product-banner" class="product-banner"></div>
+  <div class="section-head"><h2>📦 Paketlar</h2><span class="small">Narxlar UZS</span></div>
+  <p class="small" style="margin:8px 0 15px">Davom etish uchun paketni tanlang.</p>
+  <div id="packages" class="package-list"></div>
+  <button id="continue" class="primary" disabled data-action="checkout">Davom etish →</button>
+  <p class="small" style="margin-top:12px">Narxlar hozircha sinov uchun kiritilgan.</p>
+</section>
 
-    <div class="games">
-      <div class="game">
-        <div class="emoji">🔥</div>
-        <h3>Free Fire</h3>
-        <p>Diamonds</p>
-        <button type="button" onclick="choose('Free Fire')">Tanlash →</button>
-      </div>
-
-      <div class="game">
-        <div class="emoji">🎯</div>
-        <h3>PUBG Mobile</h3>
-        <p>UC</p>
-        <button type="button" onclick="choose('PUBG Mobile')">Tanlash →</button>
-      </div>
-
-      <div class="game">
-        <div class="emoji">⚔️</div>
-        <h3>Mobile Legends</h3>
-        <p>Diamonds</p>
-        <button type="button" onclick="choose('Mobile Legends')">Tanlash →</button>
-      </div>
-
-      <div class="game">
-        <div class="emoji">⭐️</div>
-        <h3>Brawl Stars</h3>
-        <p>O‘yin mahsulotlari</p>
-        <button type="button" onclick="choose('Brawl Stars')">Tanlash →</button>
-      </div>
-
-      <div class="game">
-        <div class="emoji">🌟</div>
-        <h3>Telegram Stars</h3>
-        <p>Stars</p>
-        <button type="button" onclick="choose('Telegram Stars')">Tanlash →</button>
-      </div>
-
-      <div class="game">
-        <div class="emoji">🚀</div>
-        <h3>Telegram Premium</h3>
-        <p>Premium obuna</p>
-        <button type="button" onclick="choose('Telegram Premium')">Tanlash →</button>
-      </div>
+<section id="checkout" class="hidden">
+  <div class="screen-title">
+    <button class="back" data-action="detail">‹</button>
+    <div><h2>Buyurtma ma’lumotlari</h2><p class="small">Tanlovingizni tekshiring</p></div>
+  </div>
+  <div id="order-summary" class="summary"></div>
+  <form id="order-form">
+    <div id="player-field">
+      <label class="field-label" for="player-id">O‘yin ID raqami (Player ID)</label>
+      <input class="field" id="player-id" placeholder="ID raqamingizni kiriting" autocomplete="off">
+      <p class="small" style="margin-top:7px">ID raqamini o‘yindagi profilingizdan topishingiz mumkin.</p>
     </div>
+    <label class="field-label" for="contact">Telegram username (ixtiyoriy)</label>
+    <input class="field" id="contact" placeholder="@username" autocomplete="off">
+    <button class="primary" type="submit">Tanlovni tasdiqlash →</button>
+  </form>
+  <div id="checkout-message"></div>
+  <div class="notice">Bu sinov oynasi. Tasdiqlash haqiqiy buyurtma yaratmaydi va to‘lov olmaydi.</div>
+</section>
 
-    <div id="message" role="status" aria-live="polite"></div>
+<section id="orders" class="hidden">
+  <div class="screen-head" style="padding:14px 0 20px"><h2>📋 Buyurtmalarim</h2></div>
+  <div class="empty"><div class="emoji">🧾</div><b>Hozircha buyurtmalar yo‘q</b><br>Tanlagan mahsulotlaringiz bu yerda ko‘rinadi. Sinov versiyasida buyurtmalar saqlanmaydi.</div>
+</section>
 
-    <div class="notice">
-      <strong>ℹ️ Muhim ma’lumot</strong><br>
-      VORN STORE hozir sinov versiyasida. Hozircha haqiqiy buyurtma,
-      to‘lov va avtomatik yetkazib berish ulanmagan.
-    </div>
-  </main>
+<section id="profile" class="hidden">
+  <div class="screen-head" style="padding:14px 0 20px"><h2>👤 Profil</h2></div>
+  <div class="product-banner"><div class="game-icon">👤</div><div><h2>VORN STORE mijozi</h2><p>Telegram Mini App</p></div></div>
+  <div class="notice">Savollar yoki yordam uchun do‘kon administratori bilan bog‘lanish bo‘limi keyin ulanadi.</div>
+</section>
+</main>
 
-  <footer>© 2026 VORN STORE · Digital Gaming Store</footer>
+<footer>© 2026 VORN STORE · DIGITAL GAMING STORE</footer>
 
-  <script>
-    function choose(product) {
-      const message = document.getElementById('message');
-      if (!message) return;
+<nav class="bottom-nav">
+  <button class="nav-btn active" data-tab="home"><span class="nav-icon">⌂</span>Bosh sahifa</button>
+  <button class="nav-btn" data-tab="orders"><span class="nav-icon">▤</span>Buyurtmalar</button>
+  <button class="nav-btn" data-tab="profile"><span class="nav-icon">♙</span>Profil</button>
+</nav>
 
-      message.textContent = product + ' tanlandi! Buyurtma berish xizmati tez orada ulanadi.';
-      message.style.display = 'block';
-      message.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    }
-  </script>
+<script>
+const tg = window.Telegram && window.Telegram.WebApp;
+if (tg) {
+  tg.ready();
+  tg.expand();
+}
+
+const products = [
+ {id:'ff',name:'Free Fire',desc:'Diamonds',icon:'🔥',packages:[
+  ['100 Diamonds',15000],['310 Diamonds',40000],['520 Diamonds',65000],['1060 Diamonds',125000]
+ ]},
+ {id:'pubg',name:'PUBG Mobile',desc:'UC paketlari',icon:'🎯',packages:[
+  ['60 UC',15000],['325 UC',65000],['660 UC',125000],['1800 UC',320000]
+ ]},
+ {id:'ml',name:'Mobile Legends',desc:'Diamonds',icon:'⚔️',packages:[
+  ['86 Diamonds',18000],['172 Diamonds',35000],['257 Diamonds',52000],['706 Diamonds',135000]
+ ]},
+ {id:'brawl',name:'Brawl Stars',desc:'O‘yin mahsulotlari',icon:'⭐️',packages:[
+  ['30 Gems',20000],['80 Gems',45000],['170 Gems',90000],['360 Gems',175000]
+ ]},
+ {id:'stars',name:'Telegram Stars',desc:'Stars paketlari',icon:'🌟',packages:[
+  ['50 Stars',20000],['100 Stars',39000],['250 Stars',95000],['500 Stars',185000]
+ ]},
+ {id:'premium',name:'Telegram Premium',desc:'Premium obuna',icon:'🚀',packages:[
+  ['1 oy',65000],['3 oy',175000],['6 oy',320000],['12 oy',590000]
+ ]}
+];
+
+let currentProduct = null;
+let currentPackage = null;
+
+const money = n => new Intl.NumberFormat('uz-UZ').format(n) + ' so‘m';
+const el = id => document.getElementById(id);
+
+function showScreen(name) {
+  ['home','detail','checkout','orders','profile'].forEach(id => {
+    el(id).classList.toggle('hidden',id !== name);
+  });
+  document.querySelectorAll('.nav-btn').forEach(btn => {
+    btn.classList.toggle('active',btn.dataset.tab === name);
+  });
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function renderGames(filter='') {
+  const list = products.filter(p => (p.name+' '+p.desc).toLowerCase().includes(filter.toLowerCase()));
+  el('games').innerHTML = list.map(p => `
+    <button class="card" data-product="${p.id}">
+      <div class="game-icon">${p.icon}</div>
+      <h3>${p.name}</h3>
+      <p>${p.desc}</p>
+      <span class="card-cta">Paketlarni ko‘rish →</span>
+    </button>
+  `).join('');
+  if (!list.length) el('games').innerHTML = '<p class="small">Mahsulot topilmadi.</p>';
+}
+
+function openProduct(id) {
+  currentProduct = products.find(p => p.id === id);
+  currentPackage = null;
+  if (!currentProduct) return;
+
+  el('detail-heading').textContent = currentProduct.name;
+  el('product-banner').innerHTML = `
+    <div class="game-icon">${currentProduct.icon}</div>
+    <div><h2>${currentProduct.name}</h2><p>${currentProduct.desc}</p><p style="margin-top:7px;color:#58bdff">Paketni tanlang ↓</p></div>
+  `;
+  el('packages').innerHTML = currentProduct.packages.map((p,i) => `
+    <button class="package" data-package="${i}">
+      <div class="amount">${p[0]}</div>
+      <div class="price">${money(p[1])}</div>
+      <div class="unit">Namunaviy narx</div>
+    </button>
+  `).join('');
+  el('continue').disabled = true;
+  showScreen('detail');
+}
+
+function selectPackage(i) {
+  currentPackage = currentProduct.packages[i];
+  document.querySelectorAll('.package').forEach((b,index) => {
+    b.classList.toggle('selected',index === i);
+  });
+  el('continue').disabled = false;
+}
+
+function openCheckout() {
+  if (!currentProduct || !currentPackage) return;
+  el('order-summary').innerHTML =
+    'Mahsulot: <strong>'+currentProduct.name+'</strong><br>'+
+    'Paket: <strong>'+currentPackage[0]+'</strong><br>'+
+    'Narx: <strong>'+money(currentPackage[1])+'</strong>';
+  const needsPlayerId = !['stars','premium'].includes(currentProduct.id);
+  el('player-field').classList.toggle('hidden',!needsPlayerId);
+  el('player-id').required = needsPlayerId;
+  el('player-id').value = '';
+  el('contact').value = '';
+  el('checkout-message').innerHTML = '';
+  showScreen('checkout');
+}
+
+document.addEventListener('click', e => {
+  const productButton = e.target.closest('[data-product]');
+  if (productButton) return openProduct(productButton.dataset.product);
+
+  const packageButton = e.target.closest('[data-package]');
+  if (packageButton) return selectPackage(Number(packageButton.dataset.package));
+
+  const action = e.target.closest('[data-action]');
+  if (action) {
+    if (action.dataset.action === 'home') showScreen('home');
+    if (action.dataset.action === 'detail') showScreen('detail');
+    if (action.dataset.action === 'checkout') openCheckout();
+  }
+
+  const tab = e.target.closest('[data-tab]');
+  if (tab) showScreen(tab.dataset.tab);
+});
+
+el('search').addEventListener('input',e => renderGames(e.target.value));
+
+el('order-form').addEventListener('submit',e => {
+  e.preventDefault();
+  const playerId = el('player-id').value.trim();
+  if (!el('player-field').classList.contains('hidden') && !playerId) {
+    el('player-id').focus();
+    return;
+  }
+  el('checkout-message').innerHTML =
+    '<div class="toast">✅ Tanlov ma’lumotlari to‘ldirildi!<br>'+
+    'Bu hozircha sinov rejimi: buyurtma serverga yuborilmadi va to‘lov olinmadi. '+
+    'Haqiqiy buyurtma uchun backend va xavfsiz to‘lov tizimini ulash kerak.</div>';
+});
+
+renderGames();
+</script>
 </body>
 </html>
