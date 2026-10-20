@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080d1b">
+  <title>VORN STORE | Game Top-Up</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #080d1b;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      min-height: 100vh;
+    }
+    header {
+      padding: 22px 6%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #1b2942;
+    }
+    .logo { font-size: 25px; font-weight: 900; letter-spacing: 2px; }
+    .logo span { color: #20a4ff; }
+    .status {
+      color: #72e7ff;
+      font-size: 11px;
+      border: 1px solid #164e75;
+      padding: 8px 12px;
+      border-radius: 20px;
+    }
+    .hero {
+      padding: 55px 6% 35px;
+      background: radial-gradient(ellipse at 50% 0%, #123c70 0%, #080d1b 65%);
+      text-align: center;
+    }
+    .tag {
+      color: #37b5ff;
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 3px;
+    }
+    h1 {
+      font-size: clamp(36px, 8vw, 65px);
+      margin: 16px 0;
+      line-height: 1.08;
+    }
+    h1 span {
+      color: #24a8ff;
+      text-shadow: 0 0 30px #087bff70;
+    }
+    .hero p { color: #aab8cf; line-height: 1.7; font-size: 14px; }
+    .section { padding: 25px 6% 55px; max-width: 1200px; margin: auto; }
+    .section h2 { font-size: 23px; margin-bottom: 8px; }
+    .sub { color: #8c9ab1; font-size: 13px; margin-bottom: 25px; }
+    .games {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .game {
+      background: linear-gradient(145deg, #15243c, #0d1425);
+      border: 1px solid #233653;
+      border-radius: 17px;
+      padding: 20px 12px;
+      text-align: center;
+      transition: .2s;
+    }
+    .game:hover {
+      border-color: #24a8ff;
+      transform: translateY(-3px);
+    }
+    .emoji { font-size: 42px; margin-bottom: 13px; }
+    .game h3 { font-size: 15px; margin-bottom: 8px; }
+    .game p { font-size: 12px; color: #96a8c2; margin-bottom: 16px; }
+    button {
+      width: 100%;
+      background: linear-gradient(90deg, #087bff, #22b8ff);
+      border: none;
+      border-radius: 9px;
+      color: white;
+      padding: 12px 8px;
+      font-size: 13px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .notice {
+      margin-top: 28px;
+      border: 1px solid #253653;
+      border-radius: 12px;
+      padding: 16px;
+      color: #aab8cf;
+      font-size: 12px;
+      line-height: 1.7;
+      background: #0c1424;
+    }
+    footer {
+      border-top: 1px solid #1b2942;
+      padding: 24px 6%;
+      text-align: center;
+      color: #77869e;
+      font-size: 12px;
+    }
+    @media (min-width: 650px) {
+      .games { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .hero { padding-top: 80px; padding-bottom: 55px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">VORN<span> STORE</span></div>
+    <div class="status">● DIGITAL STORE</div>
+  </header>
+
+  <section class="hero">
+    <div class="tag">YOUR GAME. YOUR POWER.</div>
+    <h1>LEVEL UP WITH<br><span>VORN STORE</span></h1>
+    <p>Sevimli o‘yinlaringiz uchun raqamli mahsulotlar.<br>
+       Tezkor, qulay va zamonaviy do‘kon.</p>
+  </section>
+
+  <main class="section">
+    <h2>🎮 Mahsulotlar</h2>
+    <p class="sub">O‘zingizga kerakli xizmatni tanlang.</p>
+
+    <div class="games">
+      <div class="game">
+        <div class="emoji">🔥</div>
+        <h3>Free Fire</h3>
+        <p>Diamonds</p>
+        <button onclick="choose('Free Fire')">Tanlash →</button>
+      </div>
+
+      <div class="game">
+        <div class="emoji">🎯</div>
+        <h3>PUBG Mobile</h3>
+        <p>UC</p>
+        <button onclick="choose('PUBG Mobile')">Tanlash →</button>
+      </div>
+
+      <div class="game">
+        <div class="emoji">⚔️</div>
+        <h3>Mobile Legends</h3>
+        <p>Diamonds</p>
+        <button onclick="choose('Mobile Legends')">Tanlash →</button>
+      </div>
+
+      <div class="game">
+        <div class="emoji">⭐️</div>
+        <h3>Brawl Stars</h3>
+        <p>O‘yin mahsulotlari</p>
+        <button onclick="choose('Brawl Stars')">Tanlash →</button>
+      </div>
+
+      <div class="game">
+        <div class="emoji">🌟</div>
+        <h3>Telegram Stars</h3>
+        <p>Stars</p>
+        <button onclick="choose('Telegram Stars')">Tanlash →</button>
+      </div>
+
+      <div class="game">
+        <div class="emoji">🚀</div>
+        <h3>Telegram Premium</h3>
+        <p>Premium obuna</p>
+        <button onclick="choose('Telegram Premium')">Tanlash →</button>
+      </div>
+    </div>
+
+    <div class="notice">
+      <strong>ℹ️ Muhim ma’lumot</strong><br>
+      VORN STORE hozir sinov versiyasida. Tugmalar mahsulot tanlashni
+      ko‘rsatadi, lekin haqiqiy buyurtma, to‘lov va yetkazib berish
+      hali ulanmagan.
+    </div>
+  </main>
+
+  <footer>
+    © 2026 VORN STORE · Digital Gaming Store
+  </footer>
+
+  <script>
+    function choose(product) {
+      alert(product + ' tanlandi! Buyurtma berish xizmati tez orada ulanadi.');
+    }
+  </script>
+</body>
+</html>
