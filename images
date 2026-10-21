@@ -1,4 +1,249 @@
-image: 'images/freefire.jpg'
-image: 'images/pubg.jpg'
-image: 'images/mlbb.jpg'
-image: 'images/brawl.jpg'
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="theme-color" content="#080d1b">
+<title>VORN STORE</title>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#070b16;--panel:#111c30;--line:#263954;--blue:#168cff;--muted:#91a3bd;--cyan:#47c5ff}
+body{background:var(--bg);color:#fff;font-family:Arial,sans-serif;padding-bottom:88px;-webkit-font-smoothing:antialiased}
+button,input{font:inherit}button{cursor:pointer;-webkit-tap-highlight-color:transparent}
+header{padding:19px 18px 15px;display:flex;align-items:center;justify-content:space-between;max-width:760px;margin:auto}
+.logo{font-size:25px;font-weight:900;letter-spacing:1px}.logo span{color:#22a8ff}
+.pill{font-size:10px;color:#8bdfff;border:1px solid #245477;border-radius:20px;padding:9px 11px;white-space:nowrap;background:#0b1728}
+main{max-width:760px;margin:auto;padding:0 15px}
+.hero{position:relative;background:radial-gradient(ellipse at 88% 10%,rgba(24,140,255,.42),transparent 44%),linear-gradient(135deg,#142b49,#0e192b 68%,#101a2b);border:1px solid #294a70;border-radius:24px;padding:25px 20px 22px;margin:8px 0 27px;overflow:hidden;box-shadow:0 14px 38px #0003}
+.hero:after{content:"";position:absolute;right:-38px;bottom:-70px;width:190px;height:190px;border-radius:50%;border:1px solid #53baff20;box-shadow:0 0 0 22px #53baff08,0 0 0 46px #53baff06;pointer-events:none}
+.eyebrow{font-size:10px;color:#75d1ff;letter-spacing:2.3px;font-weight:bold}
+.hero h1{font-size:clamp(27px,7vw,39px);line-height:1.1;margin:15px 0}
+.hero h1 span{color:#36b5ff}
+.hero p{position:relative;z-index:1;color:#b7c7dc;font-size:13px;line-height:1.65;max-width:410px}
+.hero-badge{position:relative;z-index:1;display:inline-flex;align-items:center;gap:8px;margin-top:19px;background:linear-gradient(100deg,#087bff,#13a5ff);padding:12px 15px;border-radius:11px;font-size:11px;font-weight:800;box-shadow:0 7px 18px #087bff30}
+.section-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+h2{font-size:20px;letter-spacing:-.3px}.small{color:var(--muted);font-size:12px;line-height:1.5}
+.search{width:100%;margin:16px 0 17px;background:#101b2e;border:1px solid var(--line);color:white;border-radius:14px;padding:15px;outline:none;transition:border .2s,box-shadow .2s}
+.search:focus,.field:focus{border-color:var(--blue);box-shadow:0 0 0 3px #168cff18}
+.games{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.card{display:block;min-width:0;text-align:left;color:white;background:linear-gradient(150deg,#15243b,#0c1423);border:1px solid var(--line);border-radius:19px;padding:11px;overflow:hidden;transition:transform .18s,border-color .18s,box-shadow .18s}
+.card:active{transform:scale(.975)}.card:hover{border-color:#3472a8;box-shadow:0 8px 25px #0002}
+.game-art{height:126px;position:relative;border-radius:13px;overflow:hidden;margin-bottom:13px;background:linear-gradient(135deg,#1a426b,#10182a);isolation:isolate}
+.game-art img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;z-index:-1;transition:transform .35s}
+.card:hover .game-art img{transform:scale(1.05)}
+.game-art:after{content:"";position:absolute;inset:35% 0 0;background:linear-gradient(transparent,#08111fe8);z-index:-1}
+.art-tag{position:absolute;top:8px;left:8px;background:#06101ab8;border:1px solid #ffffff20;color:#d9efff;font-size:9px;font-weight:bold;letter-spacing:.7px;border-radius:20px;padding:5px 7px}
+.art-emoji{position:absolute;right:12px;bottom:6px;font-size:38px;filter:drop-shadow(0 4px 8px #0008)}
+.card h3{font-size:15px;margin:0 2px 6px;line-height:1.25}.card p{font-size:11px;color:var(--muted);margin:0 2px 13px}
+.card-cta{display:block;text-align:center;background:linear-gradient(90deg,#087bff,#159cff);border-radius:10px;padding:11px 4px;font-size:11px;font-weight:bold}
+.notice{margin:20px 0;background:#101b2b;border:1px solid var(--line);border-radius:14px;padding:14px;color:#a8bad0;font-size:11px;line-height:1.7}
+.screen-title{display:flex;align-items:center;gap:12px;margin:14px 0 20px}
+.back{background:#17263c;border:1px solid var(--line);color:white;width:42px;height:42px;border-radius:13px;font-size:23px}
+.product-banner{display:flex;align-items:center;gap:14px;background:radial-gradient(ellipse at right,#174a7b,#101a2c 70%);border:1px solid #234668;border-radius:18px;padding:16px;margin-bottom:22px;overflow:hidden}
+.product-art{width:82px;height:82px;flex-shrink:0;position:relative;overflow:hidden;border-radius:14px;background:#18314f}
+.product-art img{width:100%;height:100%;object-fit:cover;display:block}
+.product-art .fallback{position:absolute;inset:0;display:grid;place-items:center;font-size:35px;background:linear-gradient(135deg,#1b426d,#111a2b)}
+.product-banner h2{font-size:18px;margin-bottom:5px}.product-banner p{font-size:11px;color:#a9bdd5}
+.package-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
+.package{background:#111c30;color:white;border:1px solid var(--line);border-radius:15px;padding:15px 12px;text-align:left;min-width:0;transition:.18s}
+.package.selected{border-color:#299eff;background:#102b4a;box-shadow:0 0 0 2px #168cff18}
+.package .amount{font-weight:bold;font-size:14px;margin-bottom:9px}.package .price{color:#58bdff;font-size:15px;font-weight:bold}.package .unit{font-size:10px;color:var(--muted);margin-top:5px}
+.primary{width:100%;border:0;border-radius:12px;background:linear-gradient(90deg,#087bff,#22b8ff);color:white;padding:15px;font-size:13px;font-weight:bold;margin-top:18px;box-shadow:0 7px 18px #087bff20}
+.primary:disabled{opacity:.4;box-shadow:none}
+.field-label{display:block;font-size:12px;color:#b8c8dd;margin:15px 0 8px}
+.field{width:100%;padding:14px;background:#101b2e;border:1px solid var(--line);border-radius:11px;color:white;outline:none}
+.hidden{display:none!important}.empty{text-align:center;padding:48px 15px;color:var(--muted);line-height:1.8}.empty .emoji{font-size:42px;margin-bottom:12px}
+.summary{background:#111c30;border:1px solid var(--line);border-radius:14px;padding:16px;margin-top:16px;font-size:12px;line-height:2}
+.summary strong{color:#5dbdff}
+.bottom-nav{position:fixed;z-index:10;bottom:0;left:0;right:0;background:#0c1423;border-top:1px solid #24334b;display:grid;grid-template-columns:repeat(3,1fr);padding:10px 8px calc(10px + env(safe-area-inset-bottom));backdrop-filter:blur(14px)}
+.nav-btn{border:0;background:transparent;color:#8193ad;font-size:11px;padding:5px}.nav-btn .nav-icon{display:block;font-size:21px;margin-bottom:5px}.nav-btn.active{color:#42b4ff}
+footer{text-align:center;color:#667891;font-size:10px;padding:22px}
+.toast{background:#123353;border:1px solid #2586cf;padding:13px;border-radius:12px;margin-top:14px;font-size:12px;line-height:1.6}
+@media(min-width:560px){.games,.package-list{grid-template-columns:repeat(3,minmax(0,1fr))}.hero{padding:32px}.hero h1{font-size:42px}.game-art{height:150px}}
+@media(max-width:360px){.game-art{height:100px}.card{padding:9px}.logo{font-size:22px}.pill{font-size:9px;padding:8px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">VORN<span> STORE</span></div>
+  <div class="pill">● DIGITAL STORE</div>
+</header>
+
+<main>
+<section id="home">
+  <div class="hero">
+    <div class="eyebrow">YOUR GAME. YOUR POWER.</div>
+    <h1>O‘YININGIZNI<br><span>KEYINGI DARAJAGA</span></h1>
+    <p>Sevimli o‘yinlaringiz va raqamli xizmatlaringiz — barchasi bir joyda.</p>
+    <div class="hero-badge">⚡ MAHSULOTLARNI TANLANG</div>
+  </div>
+  <div class="section-head"><h2>🎮 Kategoriyalar</h2></div>
+  <p class="small">Kerakli mahsulotni tanlab, paketlar narxini ko‘ring.</p>
+  <input id="search" class="search" placeholder="🔎  O‘yin yoki xizmatni qidiring..." autocomplete="off">
+  <div id="games" class="games"></div>
+  <div class="notice">ℹ️ <b>VORN STORE sinov versiyasi</b><br>Paketlar va narxlar namunaviy. Hozircha haqiqiy to‘lov va avtomatik yetkazib berish ulanmagan.</div>
+</section>
+
+<section id="detail" class="hidden">
+  <div class="screen-title">
+    <button class="back" data-action="home" aria-label="Orqaga">‹</button>
+    <div><h2 id="detail-heading">Mahsulot</h2><p class="small">Paketni tanlang</p></div>
+  </div>
+  <div id="product-banner" class="product-banner"></div>
+  <div class="section-head"><h2>📦 Paketlar</h2><span class="small">Narxlar UZS</span></div>
+  <p class="small" style="margin:8px 0 15px">Davom etish uchun paketni tanlang.</p>
+  <div id="packages" class="package-list"></div>
+  <button id="continue" class="primary" disabled data-action="checkout">Davom etish →</button>
+  <p class="small" style="margin-top:12px">Narxlar hozircha sinov uchun kiritilgan.</p>
+</section>
+
+<section id="checkout" class="hidden">
+  <div class="screen-title">
+    <button class="back" data-action="detail">‹</button>
+    <div><h2>Buyurtma ma’lumotlari</h2><p class="small">Tanlovingizni tekshiring</p></div>
+  </div>
+  <div id="order-summary" class="summary"></div>
+  <form id="order-form">
+    <div id="player-field">
+      <label class="field-label" for="player-id">O‘yin ID raqami (Player ID)</label>
+      <input class="field" id="player-id" placeholder="ID raqamingizni kiriting" autocomplete="off">
+      <p class="small" style="margin-top:7px">ID raqamini o‘yindagi profilingizdan topishingiz mumkin.</p>
+    </div>
+    <label class="field-label" for="contact">Telegram username (ixtiyoriy)</label>
+    <input class="field" id="contact" placeholder="@username" autocomplete="off">
+    <button class="primary" type="submit">Tanlovni tasdiqlash →</button>
+  </form>
+  <div id="checkout-message"></div>
+  <div class="notice">Bu sinov oynasi. Tasdiqlash haqiqiy buyurtma yaratmaydi va to‘lov olmaydi.</div>
+</section>
+
+<section id="orders" class="hidden">
+  <div class="screen-title"><h2>📋 Buyurtmalarim</h2></div>
+  <div class="empty"><div class="emoji">🧾</div><b>Hozircha buyurtmalar yo‘q</b><br>Tanlagan mahsulotlaringiz bu yerda ko‘rinadi. Sinov versiyasida buyurtmalar saqlanmaydi.</div>
+</section>
+
+<section id="profile" class="hidden">
+  <div class="screen-title"><h2>👤 Profil</h2></div>
+  <div class="product-banner"><div class="product-art"><div class="fallback">👤</div></div><div><h2>VORN STORE mijozi</h2><p>Telegram Mini App</p></div></div>
+  <div class="notice">Savollar yoki yordam uchun do‘kon administratori bilan bog‘lanish bo‘limi keyin ulanadi.</div>
+</section>
+</main>
+
+<footer>© 2026 VORN STORE · DIGITAL GAMING STORE</footer>
+
+<nav class="bottom-nav">
+  <button class="nav-btn active" data-tab="home"><span class="nav-icon">⌂</span>Bosh sahifa</button>
+  <button class="nav-btn" data-tab="orders"><span class="nav-icon">▤</span>Buyurtmalar</button>
+  <button class="nav-btn" data-tab="profile"><span class="nav-icon">♙</span>Profil</button>
+</nav>
+
+<script>
+const tg = window.Telegram && window.Telegram.WebApp;
+if (tg) { tg.ready(); tg.expand(); }
+
+function artImage(title, icon, c1, c2) {
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="900" height="520" viewBox="0 0 900 520"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="${c1}"/><stop offset="1" stop-color="${c2}"/></linearGradient><radialGradient id="r"><stop stop-color="#ffffff" stop-opacity=".32"/><stop offset="1" stop-color="#ffffff" stop-opacity="0"/></radialGradient></defs><rect width="900" height="520" fill="url(#g)"/><circle cx="690" cy="110" r="270" fill="url(#r)"/><circle cx="720" cy="410" r="180" fill="#050816" opacity=".22"/><path d="M0 420 Q180 300 360 430 T900 350 V520 H0Z" fill="#050816" opacity=".32"/><g fill="none" stroke="#fff" stroke-opacity=".22" stroke-width="3"><path d="M40 80H300M40 100H210M610 65H850M650 85H850"/><circle cx="730" cy="260" r="100"/><circle cx="730" cy="260" r="125"/></g><text x="70" y="190" font-size="94">${icon}</text><text x="70" y="300" fill="white" font-family="Arial,sans-serif" font-weight="800" font-size="58">${title}</text><text x="74" y="350" fill="white" fill-opacity=".78" font-family="Arial,sans-serif" font-size="23" letter-spacing="7">VORN DIGITAL STORE</text><path d="M70 390H330" stroke="white" stroke-width="6" stroke-linecap="round" opacity=".75"/></svg>`;
+  return 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(svg);
+}
+
+const products = [
+ {id:'ff',name:'Free Fire',desc:'Diamonds',icon:'🔥',tag:'FREE FIRE',image:artImage('FREE FIRE','🔥','#f97316','#7f1d1d'),packages:[['100 Diamonds',15000],['310 Diamonds',40000],['520 Diamonds',65000],['1060 Diamonds',125000]]},
+ {id:'pubg',name:'PUBG Mobile',desc:'UC paketlari',icon:'🎯',tag:'BATTLE ROYALE',image:artImage('PUBG MOBILE','🎯','#eab308','#713f12'),packages:[['60 UC',15000],['325 UC',65000],['660 UC',125000],['1800 UC',320000]]},
+ {id:'ml',name:'Mobile Legends',desc:'Diamonds',icon:'⚔️',tag:'MOBA',image:artImage('MOBILE LEGENDS','⚔️','#06b6d4','#172554'),packages:[['86 Diamonds',18000],['172 Diamonds',35000],['257 Diamonds',52000],['706 Diamonds',135000]]},
+ {id:'brawl',name:'Brawl Stars',desc:'O‘yin mahsulotlari',icon:'⭐',tag:'ARCADE',image:artImage('BRAWL STARS','⭐','#facc15','#be123c'),packages:[['30 Gems',20000],['80 Gems',45000],['170 Gems',90000],['360 Gems',175000]]},
+ {id:'stars',name:'Telegram Stars',desc:'Stars paketlari',icon:'🌟',tag:'TELEGRAM',image:artImage('TELEGRAM STARS','🌟','#38bdf8','#1d4ed8'),packages:[['50 Stars',20000],['100 Stars',39000],['250 Stars',95000],['500 Stars',185000]]},
+ {id:'premium',name:'Telegram Premium',desc:'Premium obuna',icon:'🚀',tag:'PREMIUM',image:artImage('PREMIUM','🚀','#a78bfa','#581c87'),packages:[['1 oy',65000],['3 oy',175000],['6 oy',320000],['12 oy',590000]]}
+];
+
+let currentProduct = null;
+let currentPackage = null;
+const money = n => new Intl.NumberFormat('uz-UZ').format(n) + ' so‘m';
+const el = id => document.getElementById(id);
+
+function artMarkup(p, compact=false) {
+  return `<div class="${compact ? 'product-art' : 'game-art'}">
+    <img src="${p.image}" alt="${p.name}" loading="lazy" onerror="this.style.display='none'">
+    ${compact ? `<div class="fallback">${p.icon}</div>` : `<span class="art-tag">${p.tag}</span><span class="art-emoji">${p.icon}</span>`}
+  </div>`;
+}
+
+function showScreen(name) {
+  ['home','detail','checkout','orders','profile'].forEach(id => el(id).classList.toggle('hidden',id !== name));
+  document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.toggle('active',btn.dataset.tab === name));
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function renderGames(filter='') {
+  const list = products.filter(p => (p.name+' '+p.desc).toLowerCase().includes(filter.toLowerCase()));
+  el('games').innerHTML = list.map(p => `
+    <button class="card" data-product="${p.id}">
+      ${artMarkup(p)}
+      <h3>${p.name}</h3>
+      <p>${p.desc}</p>
+      <span class="card-cta">Paketlarni ko‘rish →</span>
+    </button>
+  `).join('');
+  if (!list.length) el('games').innerHTML = '<p class="small">Mahsulot topilmadi.</p>';
+}
+
+function openProduct(id) {
+  currentProduct = products.find(p => p.id === id);
+  currentPackage = null;
+  if (!currentProduct) return;
+  el('detail-heading').textContent = currentProduct.name;
+  el('product-banner').innerHTML = `${artMarkup(currentProduct,true)}
+    <div><h2>${currentProduct.name}</h2><p>${currentProduct.desc}</p><p style="margin-top:7px;color:#58bdff">Paketni tanlang ↓</p></div>`;
+  el('packages').innerHTML = currentProduct.packages.map((p,i) => `
+    <button class="package" data-package="${i}">
+      <div class="amount">${p[0]}</div><div class="price">${money(p[1])}</div><div class="unit">Namunaviy narx</div>
+    </button>`).join('');
+  el('continue').disabled = true;
+  showScreen('detail');
+}
+
+function selectPackage(i) {
+  if (!currentProduct || !currentProduct.packages[i]) return;
+  currentPackage = currentProduct.packages[i];
+  document.querySelectorAll('.package').forEach((b,index) => b.classList.toggle('selected',index === i));
+  el('continue').disabled = false;
+}
+
+function openCheckout() {
+  if (!currentProduct || !currentPackage) return;
+  el('order-summary').innerHTML = 'Mahsulot: <strong>'+currentProduct.name+'</strong><br>Paket: <strong>'+currentPackage[0]+'</strong><br>Narx: <strong>'+money(currentPackage[1])+'</strong>';
+  const needsPlayerId = !['stars','premium'].includes(currentProduct.id);
+  el('player-field').classList.toggle('hidden',!needsPlayerId);
+  el('player-id').required = needsPlayerId;
+  el('player-id').value = '';
+  el('contact').value = '';
+  el('checkout-message').innerHTML = '';
+  showScreen('checkout');
+}
+
+document.addEventListener('click', e => {
+  const productButton = e.target.closest('[data-product]');
+  if (productButton) return openProduct(productButton.dataset.product);
+  const packageButton = e.target.closest('[data-package]');
+  if (packageButton) return selectPackage(Number(packageButton.dataset.package));
+  const action = e.target.closest('[data-action]');
+  if (action) {
+    if (action.dataset.action === 'home') showScreen('home');
+    if (action.dataset.action === 'detail') showScreen('detail');
+    if (action.dataset.action === 'checkout') openCheckout();
+  }
+  const tab = e.target.closest('[data-tab]');
+  if (tab) showScreen(tab.dataset.tab);
+});
+
+el('search').addEventListener('input',e => renderGames(e.target.value));
+el('order-form').addEventListener('submit',e => {
+  e.preventDefault();
+  const playerId = el('player-id').value.trim();
+  if (!el('player-field').classList.contains('hidden') && !playerId) { el('player-id').focus(); return; }
+  el('checkout-message').innerHTML = '<div class="toast">✅ Tanlov ma’lumotlari to‘ldirildi!<br>Bu hozircha sinov rejimi: buyurtma serverga yuborilmadi va to‘lov olinmadi. Haqiqiy buyurtma uchun backend va xavfsiz to‘lov tizimini ulash kerak.</div>';
+});
+renderGames();
+</script>
+</body>
+</html>
